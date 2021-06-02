@@ -15,6 +15,13 @@ import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.
 import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { LeadComponent } from './components/lead/lead.component';
+import { AllLeadsComponent } from './components/all-leads/all-leads.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
+import { AboutComponent } from './components/about/about.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { HeaderComponent } from './share/header/header.component';
+import { FooterComponent } from './share/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +34,14 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
     ForgotPasswordComponent,
     HomeComponent,
     ProfileComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    LeadComponent,
+    AllLeadsComponent,
+    NotificationsComponent,
+    AboutComponent,
+    ContactComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

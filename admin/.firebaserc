@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "loan-unbox-admin": {
+      "hosting": {
+        "admin": [
+          "loan-unbox-admin"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "loan-unbox-admin"
+  }
+}

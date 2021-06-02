@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "loan-unbox0223": {
+      "hosting": {
+        "loan-unbox": [
+          "loan-unbox0223"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "loan-unbox0223"
+  }
+}

@@ -26,7 +26,7 @@
               <td>{{data?.connector_code}}</td>
               <td>{{data?.mobile_no}}</td>
               <td>{{data?.gender}}</td>
-              <td>{{data?.timestamp | date : 'mediumDate'}}</td>
+              <td>{{data?.timestamp.toDate() | date : 'mediumDate'}}</td>
               <td><button class="btn btn-primary" (click)="sendNotification(data.id)"><i
                     class="fa fa-paper-plane"></i></button>
               </td>

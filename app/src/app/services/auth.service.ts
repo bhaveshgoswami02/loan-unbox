@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 import { CommonService } from './common.service';
+import firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -59,6 +60,7 @@ export class AuthService {
 
   registration(data: any) {
     data.mobile_no = this.mobile_no
+    data.timestamp = firebase.firestore.Timestamp.now()
     this.db.collection("users").doc(this.mobile_no.toString()).set(data).then(res => {
       localStorage.setItem("uid", this.mobile_no.toString())
       this.setUser(data)
@@ -122,7 +124,5 @@ export class AuthService {
     this.removeUserData()
     this.router.navigateByUrl("/auth")
   }
-
-  
 
 }

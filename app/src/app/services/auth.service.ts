@@ -99,9 +99,9 @@ export class AuthService {
     )
   }
 
-  updateUser(data: any) {
+  updateUser(uid:any,data: any) {
     this.common.showLoader()
-    return this.db.collection("users").doc(this.getUid()?.toString()).update(data).then(res=>{
+    return this.db.collection("users").doc(uid).update(data).then(res=>{
       this.setUser(data)
       this.common.showToast("success","User Updated Successful!","")
     }).catch(err=>{

@@ -34,7 +34,7 @@ export class EditProfileComponent implements OnInit {
   }
 
   onSubmit() {
-    this.auth.updateUser(this.formData.value)
+    this.auth.updateUser(this.auth.getUid(),this.formData.value)
   }
 
 }

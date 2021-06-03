@@ -24,7 +24,6 @@ export class SigninComponent implements OnInit {
 
   onSubmit() {
     console.log(this.validation)
-    console.log("signin data", this.formData.value)
     this.auth.signin(this.formData.value.mobile_no)
   }
 

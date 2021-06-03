@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { CommonService } from 'src/app/services/common.service';
 
@@ -10,8 +11,8 @@ import { CommonService } from 'src/app/services/common.service';
 })
 export class ResetPasswordComponent implements OnInit {
   formData: FormGroup;
-
-  constructor(private fb: FormBuilder, public common: CommonService, public auth: AuthService) {
+  id:any = null
+  constructor(private fb: FormBuilder, public common: CommonService, public auth: AuthService,public route:ActivatedRoute) {
     this.formData = this.fb.group({
       'password': ['', [Validators.required, Validators.pattern('(?=\\D*\\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}')]],
       'confirm_password': ['', [Validators.required, Validators.pattern('(?=\\D*\\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}')]]
@@ -19,6 +20,7 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.id = this.route.snapshot.paramMap.get("id")
   }
 
   get validation() { return this.formData?.controls; }
@@ -34,7 +36,7 @@ export class ResetPasswordComponent implements OnInit {
 
   onSubmit() {
     delete this.formData.value.confirm_password
-    this.auth.updateUser(this.formData.value)
+    this.auth.updateUser(this.id,this.formData.value)
   }
 
 }

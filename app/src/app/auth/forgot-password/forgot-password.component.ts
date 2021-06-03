@@ -15,9 +15,9 @@ export class ForgotPasswordComponent implements OnInit {
   formData: FormGroup;
   otpForm: FormGroup;
   isOtpSent: boolean = false
-  session_id:any
+  session_id: any
 
-  constructor(private fb: FormBuilder, public authService: AuthService,public http:HttpClient,public router:Router,public common:CommonService) {
+  constructor(private fb: FormBuilder, public authService: AuthService, public http: HttpClient, public router: Router, public common: CommonService) {
     this.formData = this.fb.group({
       'mobile_no': ['', [Validators.required]],
     })
@@ -35,7 +35,7 @@ export class ForgotPasswordComponent implements OnInit {
   onSubmit() {
     this.authService.db.collection("users").doc(this.formData.value.mobile_no.toString()).get().subscribe(res => {
       if (res.exists) {
-        this.authService.sendOtp(this.formData.value.mobile_no).subscribe((res:any)=>{
+        this.authService.sendOtp(this.formData.value.mobile_no).subscribe((res: any) => {
           if (res.Status == "Success") {
             alert("OTP sent!")
             this.session_id = res.Details
@@ -49,7 +49,7 @@ export class ForgotPasswordComponent implements OnInit {
         })
       }
       else {
-       alert("user not exist!")
+        alert("user not exist!")
       }
     })
   }
@@ -59,7 +59,7 @@ export class ForgotPasswordComponent implements OnInit {
     this.http.get(url).subscribe((res: any) => {
       if (res.Status == "Success") {
         alert("otp verify")
-        this.router.navigateByUrl("/auth/reset-password")
+        this.router.navigateByUrl("/auth/reset-password/" + this.formData.value.mobile_no)
       }
       else {
         alert("otp not verify")

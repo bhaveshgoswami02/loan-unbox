@@ -21,7 +21,7 @@ export class LeadComponent implements OnInit {
       'mobile_no': ['', [Validators.required]],
       'loan_required': ['', [Validators.required]],
       'description': ['', [Validators.required]],
-      'amount': ['', [Validators.required]],
+      'amount': [0, [Validators.required]],
       'address_details': this.fb.group({
         'flat_street': [''],
         'pincode': [''],

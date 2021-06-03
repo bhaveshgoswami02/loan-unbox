@@ -32,7 +32,7 @@ const routes: Routes = [
   {path:'auth',component:AuthComponent,children:[
     {path:'',component:SigninComponent},
     {path:'register',component:RegisterComponent},
-    {path:'reset-password',component:ResetPasswordComponent},
+    {path:'reset-password/:id',component:ResetPasswordComponent},
     {path:'forgot-password',component:ForgotPasswordComponent},
     {path:'password',component:PasswordComponent},
     {path:'verify-otp',component:VerifyOtpComponent},

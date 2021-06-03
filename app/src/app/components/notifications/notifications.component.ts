@@ -12,14 +12,22 @@ export class NotificationsComponent implements OnInit {
   constructor(public service: NotificationsService) { }
 
   ngOnInit(): void {
-    this.getData()
+    this.getsingleUserNotifications()
   }
 
+  getsingleUserNotifications() {
+    this.service.getSingleUserNotifications().subscribe(res=>{
+      this.data = res
+      this.getData()
+    })
+  }
+  
   getData() {
     this.service.getAll().subscribe(res => {
-      this.data = res
+      this.data = this.data.concat(res)
       console.log("data", this.data)
     })
   }
+  
 
 }

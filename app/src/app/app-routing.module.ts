@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './auth/auth.component';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
+import { PasswordComponent } from './auth/password/password.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { SigninComponent } from './auth/signin/signin.component';
+import { VerifyOtpComponent } from './auth/verify-otp/verify-otp.component';
 import { AboutComponent } from './components/about/about.component';
 import { AllLeadsComponent } from './components/all-leads/all-leads.component';
 import { ComponentsComponent } from './components/components.component';
@@ -14,9 +16,10 @@ import { HomeComponent } from './components/home/home.component';
 import { LeadComponent } from './components/lead/lead.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 const routes: Routes = [
-  {path:'',component:ComponentsComponent,children:[
+  {path:'',component:ComponentsComponent,canActivate:[AuthGuardService],children:[
     {path:'',component:HomeComponent},
     {path:'lead',component:LeadComponent},
     {path:'leads',component:AllLeadsComponent},
@@ -31,6 +34,8 @@ const routes: Routes = [
     {path:'register',component:RegisterComponent},
     {path:'reset-password',component:ResetPasswordComponent},
     {path:'forgot-password',component:ForgotPasswordComponent},
+    {path:'password',component:PasswordComponent},
+    {path:'verify-otp',component:VerifyOtpComponent},
   ]}
 ];
 

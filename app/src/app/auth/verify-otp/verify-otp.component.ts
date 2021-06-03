@@ -4,16 +4,16 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-signin',
-  templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.scss']
+  selector: 'app-verify-otp',
+  templateUrl: './verify-otp.component.html',
+  styleUrls: ['./verify-otp.component.scss']
 })
-export class SigninComponent implements OnInit {
+export class VerifyOtpComponent implements OnInit {
   formData: FormGroup;
 
   constructor(private fb: FormBuilder, public router: Router, public auth: AuthService) {
     this.formData = this.fb.group({
-      'mobile_no': ['', [Validators.required]],
+      'otp': ['', [Validators.required]],
     })
   }
 
@@ -24,8 +24,8 @@ export class SigninComponent implements OnInit {
 
   onSubmit() {
     console.log(this.validation)
-    console.log("signin data", this.formData.value)
-    this.auth.signin(this.formData.value.mobile_no)
+    console.log("otp data", this.formData.value)
+    this.auth.verifyOtp(this.formData.value.otp)
   }
 
 }

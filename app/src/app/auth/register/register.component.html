@@ -1,1 +1,42 @@
-<p>register works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <form [formGroup]="formData" (ngSubmit)="onSubmit()">
+                <h5>Register page</h5>
+                <input type="text" formControlName="name" class="form-control">
+                <div *ngIf="validation.name.errors && validation.name.dirty">
+                    <div class="text-danger" *ngIf="validation.name?.errors?.required">Field is required!
+                    </div>
+                </div>
+                <label for="male">Male</label>
+                <input type="radio" id="male" formControlName="gender" value="male">
+                <label for="female">Female</label>
+                <input type="radio" id="female" formControlName="gender" value="female">
+                <br>
+                <label>Password</label>
+                <div class="p-inputgroup">
+                    <input type="password" class="w-100" formControlName="password">
+                </div>
+                <div *ngIf="validation.password.errors && validation.password.dirty">
+                    <div class="text-danger" *ngIf="validation.password.errors?.pattern">Please set a strong password!
+                    </div>
+                </div>
+                <label>Confirm Password</label>
+                <div class="p-inputgroup">
+                    <input class="w-100" formControlName="confirm_password" (keyup)="comparePassword()">
+                </div>
+                <div *ngIf="validation.confirm_password.errors && validation.confirm_password.dirty">
+                    <div class="text-danger" *ngIf="validation.confirm_password?.errors?.required">Password is
+                        required</div>
+                </div>
+                <p class="text-danger m-0" *ngIf="!comparePassword() && validation.confirm_password.dirty">
+                    Password not match!</p>
+                <div class="text-center">
+                    <button class="btn btn-primary mt-4" [disabled]="formData.invalid || !comparePassword()">Reset
+                        Password</button>
+                </div>
+                <br>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,1 +1,78 @@
-<p>lead works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <form [formGroup]="formData" (ngSubmit)="onSubmit()">
+                <h5>Add Lead</h5>
+                <select formControlName="prefix" class="form-control">
+                    <option value="mr.">Mr.</option>
+                    <option value="ms.">Ms.</option>
+                    <option value="mrs.">Mrs.</option>
+                    <option value="dr.">Dr.</option>
+                    <option value="prof.">Prof.</option>
+                </select>
+                <div *ngIf="validation.prefix.errors && validation.prefix.dirty">
+                    <div class="text-danger" *ngIf="validation.prefix?.errors?.required">Field is required!</div>
+                </div>
+                <br>
+
+                <input type="text" formControlName="firstName" class="form-control" placeholder="First Name">
+                <div *ngIf="validation.firstName.errors && validation.firstName.dirty">
+                    <div class="text-danger" *ngIf="validation.firstName?.errors?.required">Field is required!</div>
+                </div>
+                <br>
+
+                <input type="text" formControlName="middleName" class="form-control" placeholder="Middle Name">
+                <br>
+
+                <input type="text" formControlName="lastName" class="form-control" placeholder="Last Name">
+                <div *ngIf="validation.lastName.errors && validation.lastName.dirty">
+                    <div class="text-danger" *ngIf="validation.lastName?.errors?.required">Field is required!</div>
+                </div>
+                <br>
+
+                <input type="number" formControlName="mobile_no" class="form-control" placeholder="Mobile No.">
+                <div *ngIf="validation.mobile_no.errors && validation.mobile_no.dirty">
+                    <div class="text-danger" *ngIf="validation.mobile_no?.errors?.required">Field is required!</div>
+                </div>
+                <br>
+
+                <input type="email" formControlName="email" class="form-control" placeholder="Enter email id">
+                <div *ngIf="validation.email.errors && validation.email.dirty">
+                    <div class="text-danger" *ngIf="validation.email?.errors?.required">Email is required</div>
+                    <div class="text-danger" *ngIf="validation.email?.errors?.pattern">Email must be a valid email
+                        address</div>
+                </div>
+                <br>
+
+                <h3>Loan Requirements</h3>
+                <label>Loan required For</label> <br>
+                <input type="radio" id="new_property" formControlName="loan_required" value="New Property"> 
+                <label for="new_property">New Property</label> <br>
+                <input type="radio" id="resale_property" formControlName="loan_required" value="Resale Property">
+                <label for="resale_property">Resale Property</label> <br>
+                <input type="radio" id="self_construction" formControlName="loan_required" value="Self Construction">
+                <label for="self_construction">Self Construction</label> <br>
+                <input type="radio" id="loan_against_property" formControlName="loan_required" value="Loan Against Property">
+                <label for="loan_against_property">Loan Against Property</label> <br>
+                <input type="radio" id="other" formControlName="loan_required" value="Other">
+                <label for="other">Other</label> <br>
+
+                <input type="number" formControlName="amount" class="form-control" placeholder="Loan Amount">
+
+                <h3>Address Details (Optional)</h3>
+                <div formGroupName="address_details">
+                    <input type="text" formControlName="flat_street" placeholder="Flat/Street">
+                    <input type="number" formControlName="pincode" placeholder="Pincode">
+                    <input type="text" formControlName="city" placeholder="City">
+                    <input type="text" formControlName="state" placeholder="State">
+                </div>
+
+                <h3>Customer Description</h3>
+                <textarea formControlName="description" class="form-control" placeholder="Something about the loan taken" rows="2"></textarea>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<br><br>

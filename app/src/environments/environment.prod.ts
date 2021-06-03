@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  otpApi: "332349AbUjSyf7R60b76f2eP1",
+  otpApi: "45750bb9-c3c8-11eb-8089-0200cd936042",
   firebase: {
     apiKey: "AIzaSyDr2em5Cyyem4o_da4SHT8QGSJd40S2mMI",
     authDomain: "loan-unbox0223.firebaseapp.com",

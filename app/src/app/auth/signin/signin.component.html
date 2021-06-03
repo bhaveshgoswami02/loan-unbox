@@ -1,1 +1,18 @@
-<p>signin works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <form [formGroup]="formData" (ngSubmit)="onSubmit()">
+                <h5>login page</h5>
+                <input type="number" formControlName="mobile_no" class="form-control">
+                <div *ngIf="validation.mobile_no.errors && validation.mobile_no.dirty">
+                    <div class="text-danger" *ngIf="validation.mobile_no?.errors?.required">Field is required!
+                    </div>
+                    <!-- <div class="text-danger" *ngIf="validation.mobile_no?.errors?.max">Number is not more than 10!
+                    </div> -->
+                </div>
+                <button class="btn btn-primary">Send OTP</button>
+                <a routerLink="/auth/forgot-password">forgot password?</a>
+            </form>
+        </div>
+    </div>
+</div>

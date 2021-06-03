@@ -4,16 +4,16 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-signin',
-  templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.scss']
+  selector: 'app-password',
+  templateUrl: './password.component.html',
+  styleUrls: ['./password.component.scss']
 })
-export class SigninComponent implements OnInit {
+export class PasswordComponent implements OnInit {
   formData: FormGroup;
 
   constructor(private fb: FormBuilder, public router: Router, public auth: AuthService) {
     this.formData = this.fb.group({
-      'mobile_no': ['', [Validators.required]],
+      'password': ['', [Validators.required]],
     })
   }
 
@@ -23,9 +23,7 @@ export class SigninComponent implements OnInit {
   get validation() { return this.formData?.controls; }
 
   onSubmit() {
-    console.log(this.validation)
-    console.log("signin data", this.formData.value)
-    this.auth.signin(this.formData.value.mobile_no)
+    this.auth.onSubmitPassword(this.formData.value.password)
   }
 
 }

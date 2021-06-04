@@ -26,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PasswordComponent } from './auth/password/password.component';
 import { VerifyOtpComponent } from './auth/verify-otp/verify-otp.component';
+import { EmptyViewComponent } from './share/empty-view/empty-view.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { VerifyOtpComponent } from './auth/verify-otp/verify-otp.component';
     HeaderComponent,
     FooterComponent,
     PasswordComponent,
-    VerifyOtpComponent
+    VerifyOtpComponent,
+    EmptyViewComponent
   ],
   imports: [
     BrowserModule,

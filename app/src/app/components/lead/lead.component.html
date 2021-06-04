@@ -1,78 +1,166 @@
+<br>
 <div class="container">
     <div class="row">
-        <div class="col-md-4 mx-auto">
-            <form [formGroup]="formData" (ngSubmit)="onSubmit()">
-                <h5>Add Lead</h5>
-                <select formControlName="prefix" class="form-control">
-                    <option value="mr.">Mr.</option>
-                    <option value="ms.">Ms.</option>
-                    <option value="mrs.">Mrs.</option>
-                    <option value="dr.">Dr.</option>
-                    <option value="prof.">Prof.</option>
-                </select>
-                <div *ngIf="validation.prefix.errors && validation.prefix.dirty">
-                    <div class="text-danger" *ngIf="validation.prefix?.errors?.required">Field is required!</div>
-                </div>
-                <br>
-
-                <input type="text" formControlName="firstName" class="form-control" placeholder="First Name">
-                <div *ngIf="validation.firstName.errors && validation.firstName.dirty">
-                    <div class="text-danger" *ngIf="validation.firstName?.errors?.required">Field is required!</div>
-                </div>
-                <br>
-
-                <input type="text" formControlName="middleName" class="form-control" placeholder="Middle Name">
-                <br>
-
-                <input type="text" formControlName="lastName" class="form-control" placeholder="Last Name">
-                <div *ngIf="validation.lastName.errors && validation.lastName.dirty">
-                    <div class="text-danger" *ngIf="validation.lastName?.errors?.required">Field is required!</div>
-                </div>
-                <br>
-
-                <input type="number" formControlName="mobile_no" class="form-control" placeholder="Mobile No.">
-                <div *ngIf="validation.mobile_no.errors && validation.mobile_no.dirty">
-                    <div class="text-danger" *ngIf="validation.mobile_no?.errors?.required">Field is required!</div>
-                </div>
-                <br>
-
-                <input type="email" formControlName="email" class="form-control" placeholder="Enter email id">
-                <div *ngIf="validation.email.errors && validation.email.dirty">
-                    <div class="text-danger" *ngIf="validation.email?.errors?.required">Email is required</div>
-                    <div class="text-danger" *ngIf="validation.email?.errors?.pattern">Email must be a valid email
-                        address</div>
-                </div>
-                <br>
-
-                <h3>Loan Requirements</h3>
-                <label>Loan required For</label> <br>
-                <input type="radio" id="new_property" formControlName="loan_required" value="New Property"> 
-                <label for="new_property">New Property</label> <br>
-                <input type="radio" id="resale_property" formControlName="loan_required" value="Resale Property">
-                <label for="resale_property">Resale Property</label> <br>
-                <input type="radio" id="self_construction" formControlName="loan_required" value="Self Construction">
-                <label for="self_construction">Self Construction</label> <br>
-                <input type="radio" id="loan_against_property" formControlName="loan_required" value="Loan Against Property">
-                <label for="loan_against_property">Loan Against Property</label> <br>
-                <input type="radio" id="other" formControlName="loan_required" value="Other">
-                <label for="other">Other</label> <br>
-
-                <input type="number" formControlName="amount" class="form-control" placeholder="Loan Amount">
-
-                <h3>Address Details (Optional)</h3>
-                <div formGroupName="address_details">
-                    <input type="text" formControlName="flat_street" placeholder="Flat/Street">
-                    <input type="number" formControlName="pincode" placeholder="Pincode">
-                    <input type="text" formControlName="city" placeholder="City">
-                    <input type="text" formControlName="state" placeholder="State">
-                </div>
-
-                <h3>Customer Description</h3>
-                <textarea formControlName="description" class="form-control" placeholder="Something about the loan taken" rows="2"></textarea>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+        <div class="col-md-12 border-bottom">
+            <h4>Create New Lead</h4>
+            <p class="text-muted">Fill the form we will contact you soon.</p>
         </div>
     </div>
-</div>
 
-<br><br>
+    <div class="row my-5">
+        <form [formGroup]="formData" (ngSubmit)="onSubmit()">
+            <div class="col-md-12">
+                <h5>Contact Details</h5>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3 my-2 col-4">
+                        <select formControlName="prefix" class="form-control border w-100">
+                            <option value="mr.">Mr.</option>
+                            <option value="ms.">Ms.</option>
+                            <option value="mrs.">Mrs.</option>
+                            <option value="dr.">Dr.</option>
+                            <option value="prof.">Prof.</option>
+                        </select>
+                    </div>
+                    <div *ngIf="validation.prefix.errors && validation.prefix.dirty">
+                        <div class="text-danger" *ngIf="validation.prefix?.errors?.required">Field is required!</div>
+                    </div>
+                    <div class="col-md-3 my-2 col-8">
+                        <input type="text" formControlName="firstName" class="form-control border"
+                            placeholder="First Name*">
+                        <div *ngIf="validation.firstName.errors && validation.firstName.dirty">
+                            <div class="text-danger" *ngIf="validation.firstName?.errors?.required">Field is required!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 my-2 col-12">
+                        <input type="text" formControlName="middleName" class="form-control border"
+                            placeholder="Middle Name (Optional)">
+                    </div>
+                    <div class="col-md-3 my-2 col-12">
+                        <input type="text" formControlName="lastName" class="form-control border"
+                            placeholder="Last Name*">
+                        <div *ngIf="validation.lastName.errors && validation.lastName.dirty">
+                            <div class="text-danger" *ngIf="validation.lastName?.errors?.required">Field is required!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 my-2 col-12">
+                        <input type="number" formControlName="mobile_no" class="border form-control"
+                            placeholder="Mobile No.*">
+                        <div *ngIf="validation.mobile_no.errors && validation.mobile_no.dirty">
+                            <div class="text-danger" *ngIf="validation.mobile_no?.errors?.required">Field is required!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 my-2 col-12">
+                        <input type="email" formControlName="email" class="form-control border"
+                            placeholder="Enter Email-ID*">
+                        <div *ngIf="validation.email.errors && validation.email.dirty">
+                            <div class="text-danger" *ngIf="validation.email?.errors?.required">Email is required</div>
+                            <div class="text-danger" *ngIf="validation.email?.errors?.pattern">Email must be a valid
+                                email
+                                address</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br><br>
+            <div class="col-md-12">
+                <h5>Loan Requirements</h5>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <label class="text-muted">Loan required For</label> <br>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" formControlName="loan_required"
+                                value="New Property" id="new_property">
+                            <label class="form-check-label" for="new_property">
+                                New Property
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" formControlName="loan_required"
+                                value="Resale Property" id="resale_property">
+                            <label class="form-check-label" for="resale_property">
+                                Resale Property
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" formControlName="loan_required"
+                                value="Self Construction" id="self_construction">
+                            <label class="form-check-label" for="self_construction">
+                                Self Construction
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" formControlName="loan_required"
+                                value="Loan Against Property" id="loan_against_property">
+                            <label class="form-check-label" for="loan_against_property">
+                                Loan Against Property
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" formControlName="loan_required" value="Other"
+                                id="other">
+                            <label class="form-check-label" for="other">
+                                Other
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-4">
+                        <label class="text-muted">Loan Amount</label> <br>
+                        <input type="number" formControlName="amount" class="form-control border"
+                            placeholder="Loan Amount*">
+                        <div *ngIf="validation.prefix.errors && validation.prefix.dirty">
+                            <div class="text-danger" *ngIf="validation.prefix?.errors?.required">Field is required!
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-4" formGroupName="address_details">
+                        <label class="text-muted">Address Details (Optional)</label> <br>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="text" class="form-control border mb-2" formControlName="flat_street" placeholder="Flat/Street">
+                            </div>
+                            <div class="col-md-6 col-6">
+                                <input type="number" class="form-control border mb-2" formControlName="pincode" placeholder="Pincode">
+                            </div>
+                            <div class="col-md-6 col-6">
+                                <input type="text" class="form-control border mb-2" formControlName="city" placeholder="City">
+                            </div>
+                            <div class="col-md-12">
+                                <input type="text" class="form-control border mb-2" formControlName="state" placeholder="State">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br><br>
+            <div class="col-md-12">
+                <h5>Customer Description*</h5>
+            </div>
+            <div class="col-md-12">
+                <textarea formControlName="description" class="form-control border" placeholder="Something about the loan taken" rows="4"></textarea>
+                <div *ngIf="validation.description.errors && validation.description.dirty">
+                    <div class="text-danger" *ngIf="validation.description?.errors?.required">Field is required!</div>
+                </div>
+            </div>
+
+            <div class="col-md-12 mt-5 text-center">
+                <button class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+<br>

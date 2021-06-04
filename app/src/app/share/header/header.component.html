@@ -1,1 +1,91 @@
-<p>header works!</p>
+<div class="header">
+    <div class="container-fluid">
+        <div class="row my-auto">
+            <div class="col-md-6 col-10 logo">
+                <label #toggler for="openSidebarMenu">
+                    <i class="fa fa-bars icon cursor-pointer"></i> &nbsp;&nbsp;
+                </label>
+                <svg class="logo" routerLink="/" xmlns:xlink="http://www.w3.org/1999/xlink" height="26px" version="1.1"
+                    viewBox="0 0 185 26" width="185px" xmlns="http://www.w3.org/2000/svg">
+                    <g _ngcontent-sc1="" fill="#fff" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1">
+                        <g _ngcontent-sc1="" id="A6" transform="translate(-30.000000, -113.000000)" class="light">
+                            <g _ngcontent-sc1="" id="Group" transform="translate(30.000000, 113.000000)">
+                                <g _ngcontent-sc1="" fill-rule="nonzero" id="icon">
+                                    <polygon _ngcontent-sc1="" id="Path"
+                                        points="0 0 0 5.60685249 16.0895884 9.02481464 16.0895884 19.6593673 5.84695881 19.6593673 5.84695881 9.64003334 0 9.64003334 0 26 22 26 22 4.57337499">
+                                    </polygon>
+                                </g><text _ngcontent-sc1="" font-family="Avenir, IBM Plex Sans, sans-serif"
+                                    font-size="19" font-weight="600" id="LoanUnbox.com" letter-spacing="0.527777778"
+                                    class="light">
+                                    <tspan _ngcontent-sc1="" x="32.1449444" y="21">LoanUnbox</tspan>
+                                </text>
+                            </g>
+                        </g>
+                    </g>
+                </svg>
+            </div>
+            <div class="col-md-6 col-2">
+                <div class="row link-container">
+                    <a class="link d-none d-md-block d-lg-block" [routerLink]="['/']" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact:
+                        true}">Home</a>
+                    <a class="link d-none d-md-block d-lg-block" routerLink="/lead" routerLinkActive="active">Lead</a>
+                    <a class="link d-none d-md-block d-lg-block" routerLink="/leads" routerLinkActive="active">All
+                        Leads</a>
+                    <a class="link d-none d-md-block d-lg-block" routerLink="/profile"
+                        routerLinkActive="active">Profile</a>
+                    <a class="link" routerLink="/notifications">
+                        <div class="notifications">
+                            <i class="fa fa-bell"></i>
+                            <span class="badge">9</span>
+                        </div>
+                    </a>
+                    <button class="btn-logout d-none d-md-block d-lg-block">
+                        <i class="fa fa-sign-out"></i>
+                        Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="d-lg-none d-md-none d-block">
+    <div class="body">
+        <input type="checkbox" id="openSidebarMenu" class="d-none">
+        <div style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);" id="sidebarMenu">
+            <div class="row">
+              <div class="col-9 bg-primary p-0" style="height: 100vh;">
+                <ul class="p-0">
+                  <li  (click)="toggle()" routerLink="/" style="list-style-type: none;" class="py-2 px-4">
+                    <p class="pl-1 mb-0 text-primary-contrast">
+                      <i class="fa fa-home"></i>&nbsp;&nbsp; Home</p>
+                  </li>
+                  <hr class="m-0">
+                  
+                  <li  (click)="toggle()" routerLink="/lead" style="list-style-type: none;" class="py-2 px-4">
+                    <p class="pl-1 mb-0 text-primary-contrast">
+                      <i class="fa fa-plus"></i>&nbsp;&nbsp; Lead</p>
+                  </li>
+                  <hr class="m-0">
+
+                  <li  (click)="toggle()" routerLink="/leads" style="list-style-type: none;" class="py-2 px-4">
+                    <p class="pl-1 mb-0 text-primary-contrast">
+                      <i class="fa fa-list"></i>&nbsp;&nbsp; All Leads</p>
+                  </li>
+                  <hr class="m-0">
+
+                  <li  (click)="logout()" routerLink="/leads" style="list-style-type: none;" class="py-2 px-4">
+                    <p class="pl-1 mb-0 text-primary-contrast">
+                      <i class="fa fa-sign-out"></i>&nbsp;&nbsp; Logout</p>
+                  </li>
+                  <hr class="m-0">
+                </ul>
+      
+              </div>
+              <div class="col-3" style="background: #00000078;" (click)="toggle()"></div>
+            </div>
+          </div>
+    </div>
+</div>

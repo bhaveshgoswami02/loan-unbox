@@ -28,6 +28,11 @@ import { PasswordComponent } from './auth/password/password.component';
 import { VerifyOtpComponent } from './auth/verify-otp/verify-otp.component';
 import { EmptyViewComponent } from './share/empty-view/empty-view.component';
 import { LeadDetailsComponent } from './components/lead-details/lead-details.component';
+import { LoaderComponent } from './share/loader/loader.component';
+import { MessageService } from 'primeng/api';
+import { RippleModule } from 'primeng/ripple';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -51,7 +56,8 @@ import { LeadDetailsComponent } from './components/lead-details/lead-details.com
     PasswordComponent,
     VerifyOtpComponent,
     EmptyViewComponent,
-    LeadDetailsComponent
+    LeadDetailsComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -59,9 +65,12 @@ import { LeadDetailsComponent } from './components/lead-details/lead-details.com
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastrModule.forRoot(), // ToastrModule added
+    RippleModule,
+    BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -33,6 +33,7 @@ export class ForgotPasswordComponent implements OnInit {
   get validation2() { return this.formData?.controls; }
 
   onSubmit() {
+    this.common.showLoader()
     this.authService.db.collection("users").doc(this.formData.value.mobile_no.toString()).get().subscribe(res => {
       if (res.exists) {
         this.authService.sendOtp(this.formData.value.mobile_no).subscribe((res: any) => {
@@ -40,29 +41,35 @@ export class ForgotPasswordComponent implements OnInit {
             alert("OTP sent!")
             this.session_id = res.Details
             this.isOtpSent = true
+            this.common.stopLoader()
           }
           else {
             alert("OTP not sent!")
             this.session_id = null
             this.isOtpSent = false
+            this.common.stopLoader()
           }
         })
       }
       else {
         alert("user not exist!")
+        this.common.stopLoader()
       }
     })
   }
 
   vertifyOtp() {
+    this.common.showLoader()
     let url = "https://2factor.in/API/V1/" + environment.otpApi + "/SMS/VERIFY/" + this.session_id + "/" + this.otpForm.value.otp
     this.http.get(url).subscribe((res: any) => {
       if (res.Status == "Success") {
         alert("otp verify")
+        this.common.stopLoader()
         this.router.navigateByUrl("/auth/reset-password/" + this.formData.value.mobile_no)
       }
       else {
         alert("otp not verify")
+        this.common.stopLoader()
         this.common.showToast("error", "OTP Not Match", "")
       }
     })

@@ -33,22 +33,25 @@ export class VerifyOtpComponent implements OnInit {
   }
 
   resendOtp() {
+    this.common.showLoader()
     if(this.auth.mobile_no) {
       this.auth.sendOtp(this.auth.mobile_no).subscribe((res:any)=>{
         if (res.Status == "Success") {
-          alert("Reset Successful!")
           this.auth.session_id = res.Details
+          this.common.stopLoader()
+          this.common.showToast("error", "", "OTP Resent Successful!")
           this.router.navigateByUrl('/auth/verify-otp')
         }
         else {
-          alert("OTP not sent!")
           this.auth.session_id = null
+          this.common.stopLoader()
           this.common.showToast("error", "", "Otp not sent!")
         }
       })
     }
     else
     {
+      this.common.stopLoader()
       this.router.navigateByUrl("/auth")
       this.common.showToast("error", "", "Please Login again!")
     }

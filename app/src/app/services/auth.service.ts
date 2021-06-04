@@ -22,22 +22,27 @@ export class AuthService {
   }
 
   signin(mobile_no: number) {
+    this.common.showLoader()
     this.mobile_no = mobile_no
     this.db.collection("users").doc(mobile_no.toString()).get().subscribe(res => {
       if (res.exists) {
+        this.common.stopLoader()
         this.router.navigateByUrl("/auth/password")
       }
       else {
         this.sendOtp(this.mobile_no).subscribe((res: any) => {
           if (res.Status == "Success") {
-            alert("OTP sent!")
+            // alert("OTP sent!")
+            this.common.showToast("error", "", res.Status)
             this.session_id = res.Details
+            this.common.stopLoader()
             this.router.navigateByUrl('/auth/verify-otp')
           }
           else {
-            alert("OTP not sent!")
+            // alert("OTP not sent!")
             this.session_id = null
-            this.common.showToast("error", "", "Otp not sent!")
+            this.common.stopLoader()
+            this.common.showToast("error", "", res.Status)
           }
         })
       }
@@ -45,41 +50,47 @@ export class AuthService {
   }
 
   verifyOtp(otp: any) {
+    this.common.showLoader()
     let url = "https://2factor.in/API/V1/" + environment.otpApi + "/SMS/VERIFY/" + this.session_id + "/" + otp
     this.http.get(url).subscribe((res: any) => {
       if (res.Status == "Success") {
-        alert("otp verify")
+        this.common.stopLoader()
+        this.common.showToast("success", "OTP verified successful!", "")
         this.router.navigateByUrl("/auth/register")
       }
       else {
-        alert("otp not verify")
+        this.common.stopLoader()
         this.common.showToast("error", "OTP Not Match", "")
       }
     })
   }
 
   registration(data: any) {
+    this.common.showLoader()
     data.mobile_no = this.mobile_no
     data.timestamp = firebase.firestore.Timestamp.now()
     this.db.collection("users").doc(this.mobile_no.toString()).set(data).then(res => {
       localStorage.setItem("uid", this.mobile_no.toString())
       this.setUser(data)
       this.router.navigateByUrl("/")
+      this.common.stopLoader()
     })
   }
 
   onSubmitPassword(password: any) {
+    this.common.showLoader()
     this.getUserDataFormDb(this.mobile_no).subscribe(res => {
-      console.log("user data", res)
       if (res.password === password) {
         localStorage.setItem("uid", this.mobile_no)
         this.setUser(res)
-        this.router.navigateByUrl("")
+        this.common.stopLoader()
+        this.router.navigateByUrl("/")
       }
       else {
-      alert("password not match")
-        this.common.showToast("error", "Your Password is not match!", "")
+        // alert("password not match")
         this.removeUserData()
+        this.common.stopLoader()
+        this.common.showToast("error", "Your Password is not match!", "")
       }
     })
   }

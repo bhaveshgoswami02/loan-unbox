@@ -1,34 +1,37 @@
 import { Location } from '@angular/common';
 import { Injectable } from '@angular/core';
 // import { NgxUiLoaderService } from 'ngx-ui-loader';
-// import { MessageService } from 'primeng/api';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommonService {
+  loader:boolean = false
 
-  constructor(public location: Location) { }
-  // constructor(private loader: NgxUiLoaderService, private messageService: MessageService, public location: Location) { }
+  constructor(public location: Location,private toastr: ToastrService) { }
 
-  showToast(type: string, title: string, message: string) {
-    // if (type == 'success') {
-    //   this.messageService.add({ severity: 'success', summary: title, detail: message });
-    // } else if (type == 'info') {
-    //   this.messageService.add({ severity: 'info', summary: title, detail: message });
-    // } else if (type == 'warning') {
-    //   this.messageService.add({ severity: 'warn', summary: title, detail: message });
-    // } else if (type == 'error') {
-    //   this.messageService.add({ severity: 'error', summary: title, detail: message });
-    // }
+  showToast(type:string,title:string,message:string) {
+    if(type=="success"){
+      this.toastr.success(title,message)
+    }
+    if(type=="error"){
+      this.toastr.error(title,message)
+    }
+    if(type=="info"){
+      this.toastr.info(title,message)
+    }
+    if(type=="warning"){
+      this.toastr.warning(title,message)
+    }
   }
 
   showLoader() {
-    // this.loader.start();
+    this.loader = true
   }
 
   stopLoader() {
-    // this.loader.stop()
+    this.loader = false
   }
 
   back() {

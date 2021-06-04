@@ -14,10 +14,20 @@ export class RegisterComponent implements OnInit {
 
   constructor(private fb: FormBuilder, public common: CommonService, public auth: AuthService,public router:Router) {
     this.formData = this.fb.group({
-      'name': ['', [Validators.required]],
+      'firstName': ['', [Validators.required]],
+      'lastName': ['', [Validators.required]],
+      'dob': ['', [Validators.required]],
+      'email': ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]],
       'gender': ['', [Validators.required]],
       'password': ['', [Validators.required, Validators.pattern('(?=\\D*\\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}')]],
-      'confirm_password': ['', [Validators.required, Validators.pattern('(?=\\D*\\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}')]]
+      'confirm_password': ['', [Validators.required, Validators.pattern('(?=\\D*\\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}')]],
+      'address_details': this.fb.group({
+        'flat_street': [''],
+        'address': [''],
+        'pincode': [''],
+        'city': [''],
+        'state': [''],
+      })
     })
     if(!this.auth.mobile_no) {
       this.router.navigateByUrl("/auth")
@@ -39,10 +49,8 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    // here we have to take connector code defalut generate  
     this.formData.value.connector_code = this.common.generateConnectorCode()
     delete this.formData.value.confirm_password
-    console.log("registration data", this.formData.value)
     this.auth.registration(this.formData.value)
   }
 

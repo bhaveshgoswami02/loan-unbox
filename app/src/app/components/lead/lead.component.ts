@@ -24,6 +24,7 @@ export class LeadComponent implements OnInit {
       'amount': [0, [Validators.required]],
       'address_details': this.fb.group({
         'flat_street': [''],
+        'address': [''],
         'pincode': [''],
         'city': [''],
         'state': [''],

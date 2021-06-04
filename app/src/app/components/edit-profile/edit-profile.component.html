@@ -1,20 +1,104 @@
+<br><br><br>
 <div class="container">
     <div class="row">
-        <div class="col-md-4 mx-auto">
-            <form [formGroup]="formData" (ngSubmit)="onSubmit()">
-                <h5>Edit profile</h5>
-                <input type="test" formControlName="name" class="form-control">
-                <div *ngIf="validation.name.errors && validation.name.dirty">
-                    <div class="text-danger" *ngIf="validation.name?.errors?.required">Field is required!
-                    </div>
-                </div>
-                <label for="male">Male</label>
-                <input type="radio" id="male" formControlName="gender" value="male">
-                <label for="female">Female</label>
-                <input type="radio" id="female" formControlName="gender" value="female">
-                <br>
-                <button class="btn btn-primary">Update</button>
-            </form>
+        <div class="col-md-12 border-bottom">
+            <h4>Update profile</h4>
+            <p class="text-muted">You can update your profile here.</p>
         </div>
     </div>
+    <div class="row">
+        <form [formGroup]="formData" (ngSubmit)="onSubmit()">
+            <div class="col-md-12 my-3">
+                <div class="row">
+                    <div class="col-md-6 my-2">
+                        <label>Enter your first name*</label>
+                        <input type="text" formControlName="firstName" class="form-control border"
+                            placeholder="Enter Your First Name*">
+                        <div *ngIf="validation.firstName.errors && validation.firstName.dirty">
+                            <div class="text-danger" *ngIf="validation.firstName?.errors?.required">Field is required!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 my-2">
+                        <label>Enter your last name*</label>
+                        <input type="text" formControlName="lastName" class="form-control border"
+                            placeholder="Enter Your Last Name*">
+                        <div *ngIf="validation.lastName.errors && validation.lastName.dirty">
+                            <div class="text-danger" *ngIf="validation.lastName?.errors?.required">Field is required!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 my-2 col-12">
+                        <label>Enter your date of birth (DOB)*</label>
+                        <input type="date" formControlName="dob" class="form-control border">
+                        <div *ngIf="validation.dob.errors && validation.dob.dirty">
+                            <div class="text-danger" *ngIf="validation.dob?.errors?.required">Field is required*</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 my-2 col-12">
+                        <label>Enter your Email-ID*</label>
+                        <input type="email" formControlName="email" class="form-control border"
+                            placeholder="Enter Email-ID*">
+                        <div *ngIf="validation.email.errors && validation.email.dirty">
+                            <div class="text-danger" *ngIf="validation.email?.errors?.required">Email is required</div>
+                            <div class="text-danger" *ngIf="validation.email?.errors?.pattern">Email must be a valid
+                                email
+                                address</div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 my-2" formGroupName="address_details">
+                        <label>Address Details (Optional)</label> <br>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="text" class="form-control border mb-2" formControlName="flat_street"
+                                    placeholder="Flat/Street">
+                            </div>
+                            <div class="col-md-12">
+                                <input type="text" class="form-control border mb-2" formControlName="address"
+                                    placeholder="Address">
+                            </div>
+                            <div class="col-md-6 col-6">
+                                <input type="number" class="form-control border mb-2" formControlName="pincode"
+                                    placeholder="Pincode">
+                            </div>
+                            <div class="col-md-6 col-6">
+                                <input type="text" class="form-control border mb-2" formControlName="city"
+                                    placeholder="City">
+                            </div>
+                            <div class="col-md-12">
+                                <input type="text" class="form-control border mb-2" formControlName="state"
+                                    placeholder="State">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 my-2">
+                        <label>Gender</label>
+                        <div class="d-flex">
+                            <div class="form-check mr-3">
+                                <input class="form-check-input" type="radio" formControlName="gender" value="male"
+                                    id="male">
+                                <label class="form-check-label" for="male">
+                                    Male
+                                </label>
+                            </div>
+                            <div class="form-check mr-3">
+                                <input class="form-check-input" type="radio" formControlName="gender" value="female"
+                                    id="female">
+                                <label class="form-check-label" for="female">
+                                    Female
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 text-center">
+                        <button class="btn btn-primary mt-4" [disabled]="formData.invalid">Update</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
+<br>

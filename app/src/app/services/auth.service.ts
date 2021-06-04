@@ -115,6 +115,18 @@ export class AuthService {
     })
   }
 
+  resetPasswword(uid:any,data: any) {
+    this.common.showLoader()
+    return this.db.collection("users").doc(uid).update(data).then(res=>{
+      this.common.showToast("success","Password Updated Successful!","Please Login Again!")
+      this.logout()
+    }).catch(err=>{
+      this.common.showToast("error","Error",err)
+    }).finally(()=>{
+      this.common.stopLoader()
+    })
+  }
+
   getUid() {
     return localStorage.getItem("uid")
   }

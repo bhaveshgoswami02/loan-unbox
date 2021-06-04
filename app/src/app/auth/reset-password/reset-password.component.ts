@@ -36,7 +36,10 @@ export class ResetPasswordComponent implements OnInit {
 
   onSubmit() {
     delete this.formData.value.confirm_password
-    this.auth.updateUser(this.id,this.formData.value)
+    this.auth.resetPasswword(this.id,this.formData.value)
   }
 
+  back() {
+    this.common.back()
+  }
 }

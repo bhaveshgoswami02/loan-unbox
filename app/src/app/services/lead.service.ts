@@ -21,11 +21,9 @@ export class LeadService {
     data.uid = this.auth.getUid()
     return this.db.collection(this.collection).add(data).then(res => {
       this.router.navigateByUrl("/" + this.collection)
-      this.common.showToast("success", "", "Added Successful!")
-      alert("Lead add successful")
+      this.common.showToast("success", "", "Your Form Submitted successful!")
     }).catch(err => {
       this.common.showToast("error", "", err)
-      return err;
     }).finally(() => {
       this.common.stopLoader()
     })

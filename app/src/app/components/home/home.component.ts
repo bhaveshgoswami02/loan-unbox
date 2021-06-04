@@ -24,11 +24,11 @@ export class HomeComponent implements OnInit {
       this.allLeads = res
       console.log("all leads",this.allLeads)
       this.allLeads.forEach((lead:any) => {
-        if (lead == 'progress' || lead == 'pending') {
+        if (lead.status == 'progress' || lead.status == 'pending') {
           this.progressLeads.push(lead)
-        } else if (lead == 'approved') {
+        } else if (lead.status == 'approved') {
           this.approvedLeads.push(lead)
-        } else if (lead == 'rejected') {
+        } else if (lead.status == 'rejected') {
           this.rejectedLeads.push(lead)
         } 
       });

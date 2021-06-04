@@ -15,7 +15,7 @@
                 <div class="card" routerLink="/lead/{{data.id}}">
                     <div class="row">
                         <div class="col-6">
-                            <h5>{{data.name}}</h5>
+                            <h5>{{data?.firstName}} {{data?.middleName}} {{data?.lastName}}</h5>
                         </div>
                         <div class="col-6">
                             <span class="float-right">

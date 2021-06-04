@@ -81,7 +81,8 @@
                             <input type="text" formControlName="firstName" class="form-control border"
                                 placeholder="Enter Your First Name*">
                             <div *ngIf="validation.firstName.errors && validation.firstName.dirty">
-                                <div class="text-danger" *ngIf="validation.firstName?.errors?.required">Field is required!
+                                <div class="text-danger" *ngIf="validation.firstName?.errors?.required">Field is
+                                    required!
                                 </div>
                             </div>
                         </div>
@@ -90,7 +91,8 @@
                             <input type="text" formControlName="lastName" class="form-control border"
                                 placeholder="Enter Your Last Name*">
                             <div *ngIf="validation.lastName.errors && validation.lastName.dirty">
-                                <div class="text-danger" *ngIf="validation.lastName?.errors?.required">Field is required!
+                                <div class="text-danger" *ngIf="validation.lastName?.errors?.required">Field is
+                                    required!
                                 </div>
                             </div>
                         </div>
@@ -98,7 +100,8 @@
                             <label>Enter your date of birth (DOB)*</label>
                             <input type="date" formControlName="dob" class="form-control border">
                             <div *ngIf="validation.dob.errors && validation.dob.dirty">
-                                <div class="text-danger" *ngIf="validation.dob?.errors?.required">Field is required*</div>
+                                <div class="text-danger" *ngIf="validation.dob?.errors?.required">Field is required*
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-6 my-2 col-12">
@@ -106,13 +109,14 @@
                             <input type="email" formControlName="email" class="form-control border"
                                 placeholder="Enter Email-ID*">
                             <div *ngIf="validation.email.errors && validation.email.dirty">
-                                <div class="text-danger" *ngIf="validation.email?.errors?.required">Email is required</div>
+                                <div class="text-danger" *ngIf="validation.email?.errors?.required">Email is required
+                                </div>
                                 <div class="text-danger" *ngIf="validation.email?.errors?.pattern">Email must be a valid
                                     email
                                     address</div>
                             </div>
                         </div>
-    
+
                         <div class="col-md-6 my-2" formGroupName="address_details">
                             <label>Address Details (Optional)</label> <br>
                             <div class="row">
@@ -138,7 +142,7 @@
                                 </div>
                             </div>
                         </div>
-    
+
                         <div class="col-md-6 my-2">
                             <label>Gender</label>
                             <div class="d-flex">
@@ -158,9 +162,41 @@
                                 </div>
                             </div>
                         </div>
-    
+
+                        <div class="col-md-6 my-2">
+                            <label>Please create new password*</label>
+                            <input type="password" class="form-control border w-100" formControlName="password"
+                                placeholder="Create Password">
+                            <div *ngIf="validation.password.errors && validation.password.dirty">
+                                <div class="text-danger" *ngIf="validation.password.errors?.required">Password is
+                                    required!
+                                </div>
+                                <div class="text-danger" *ngIf="validation.password.errors?.pattern">
+                                    Your password must be have at least <br>
+                                    <ul>
+                                        <li>1 Uppercase & 1 lowercase character</li>
+                                        <li>1 Number</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+
+                        <div class="col-md-6 my-2">
+                            <label>Please confirm your password*</label>
+                            <input type="text" class="form-control border w-100" formControlName="confirm_password"
+                                (keyup)="comparePassword()" placeholder="Confirm Password">
+                            <div *ngIf="validation.confirm_password.errors && validation.confirm_password.dirty">
+                                <div class="text-danger" *ngIf="validation.confirm_password?.errors?.required">Please
+                                    Confirm the
+                                    password!</div>
+                            </div>
+                            <p class="text-danger m-0" *ngIf="!comparePassword() && validation.confirm_password.dirty">
+                                Password not match!</p>
+                            <br>
+                        </div>
                         <div class="col-md-12 text-center">
-                            <button class="btn btn-primary mt-4" [disabled]="formData.invalid">Update</button>
+                            <button class="btn btn-primary my-4 w-100" [disabled]="formData.invalid || !comparePassword()">Next</button>
                         </div>
                     </div>
                 </div>

@@ -33,7 +33,7 @@ export class AuthService {
         this.sendOtp(this.mobile_no).subscribe((res: any) => {
           if (res.Status == "Success") {
             // alert("OTP sent!")
-            this.common.showToast("error", "", res.Status)
+            this.common.showToast("success", "", "OTP Sent Successful on your mobile number!")
             this.session_id = res.Details
             this.common.stopLoader()
             this.router.navigateByUrl('/auth/verify-otp')

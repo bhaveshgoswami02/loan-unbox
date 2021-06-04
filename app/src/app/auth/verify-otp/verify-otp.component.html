@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
     <div class="row">
         <div class="col-md-4 mx-auto">
             <form [formGroup]="formData" (ngSubmit)="onSubmit()">
@@ -10,6 +10,53 @@
                 </div>
                 <button class="btn btn-primary">Send OTP</button>
             </form>
+        </div>
+    </div>
+</div> -->
+
+<div class="container">
+    <div class="row login-container">
+        <div class="col-md-4 mx-auto my-auto">
+            <div class="mb-5">
+                <svg class="logo cursor-pointer" routerLink="/" xmlns:xlink="http://www.w3.org/1999/xlink" height="26px"
+                    version="1.1" viewBox="0 0 185 26" width="185px" xmlns="http://www.w3.org/2000/svg">
+                    <g _ngcontent-sc1="" fill="#FD786B" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1">
+                        <g _ngcontent-sc1="" id="A6" transform="translate(-30.000000, -113.000000)" class="light">
+                            <g _ngcontent-sc1="" id="Group" transform="translate(30.000000, 113.000000)">
+                                <g _ngcontent-sc1="" fill-rule="nonzero" id="icon">
+                                    <polygon _ngcontent-sc1="" id="Path"
+                                        points="0 0 0 5.60685249 16.0895884 9.02481464 16.0895884 19.6593673 5.84695881 19.6593673 5.84695881 9.64003334 0 9.64003334 0 26 22 26 22 4.57337499">
+                                    </polygon>
+                                </g><text _ngcontent-sc1="" font-family="Avenir, IBM Plex Sans, sans-serif"
+                                    font-size="19" font-weight="600" id="LoanUnbox.com" letter-spacing="0.527777778"
+                                    class="light">
+                                    <tspan _ngcontent-sc1="" x="32.1449444" y="21">LoanUnbox</tspan>
+                                </text>
+                            </g>
+                        </g>
+                    </g>
+                </svg>
+            </div>
+
+            <div class="mb-5">
+                <!-- <p class="mb-0">Welcome to</p> -->
+                <h3>Verify OTP</h3>
+            </div>
+            
+            <form [formGroup]="formData" (ngSubmit)="onSubmit()">
+                <label>Please enter OTP*</label>
+                <input type="number" formControlName="otp" class="form-control border" placeholder="Enter OTP*">
+                <div *ngIf="validation.otp.errors && validation.otp.dirty">
+                    <div class="text-danger" *ngIf="validation.otp?.errors?.required">Field is required!
+                    </div>
+                </div>
+                <button class="btn btn-primary my-4 w-100" [disabled]="formData.invalid">Next</button>
+            </form>
+
+            <div class="text-center">
+                <a class="link">Resend OTP</a> <br>
+                <a class="link" routerLink="/auth">Back to login?</a>
+            </div>
         </div>
     </div>
 </div>

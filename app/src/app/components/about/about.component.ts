@@ -12,4 +12,7 @@ export class AboutComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onNavigate(url:any) {
+    window.open(url, "_blank");
+  }
 }

@@ -13,6 +13,7 @@ import { ComponentsComponent } from './components/components.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { HomeComponent } from './components/home/home.component';
+import { LeadDetailsComponent } from './components/lead-details/lead-details.component';
 import { LeadComponent } from './components/lead/lead.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { ProfileComponent } from './components/profile/profile.component';
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path:'',component:ComponentsComponent,canActivate:[AuthGuardService],children:[
     {path:'',component:HomeComponent},
     {path:'lead',component:LeadComponent},
+    {path:'lead/:id',component:LeadDetailsComponent},
     {path:'leads',component:AllLeadsComponent},
     {path:'contact',component:ContactComponent},
     {path:'about',component:AboutComponent},

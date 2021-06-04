@@ -7,7 +7,7 @@ import { LeadService } from 'src/app/services/lead.service';
   styleUrls: ['./all-leads.component.scss']
 })
 export class AllLeadsComponent implements OnInit {
-  data:any = []
+  allData:any = []
   constructor(public service:LeadService) { }
 
   ngOnInit(): void {
@@ -16,8 +16,8 @@ export class AllLeadsComponent implements OnInit {
 
   getData() {
     this.service.getAll().subscribe(res=>{
-      this.data = res
-      console.log("data",this.data)
+      this.allData = res
+      console.log("allData",this.allData)
     })
   }
 

@@ -1,0 +1,91 @@
+<br><br><br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 border-bottom">
+            <h4>Lead Details</h4>
+        </div>
+    </div>
+
+    <div class="row my-5">
+        <div class="col-md-12">
+            <h5>Contact Details</h5>
+        </div>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-3 my-2 col-8">
+                    <label class="text-muted">First Name</label> <br>
+                    <p>{{data?.prefix}} {{data?.firstName}}</p>
+                </div>
+                <div class="col-md-3 my-2 col-12">
+                    <label class="text-muted">Middle Name</label> <br>
+                    <p>{{data?.middleName ? data?.middleName : '-'}}</p>
+                </div>
+                <div class="col-md-3 my-2 col-12">
+                    <label class="text-muted">Last Name</label> <br>
+                    <p>{{data?.lastName}}</p>
+                </div>
+                <div class="col-md-3 my-2 col-12">
+                    <label class="text-muted">Mobile Number</label> <br>
+                    <p>{{data?.mobile_no}}</p>
+                </div>
+                <div class="col-md-3 my-2 col-12">
+                    <label class="text-muted">Loan Type</label> <br>
+                    <p>{{data?.email}}</p>
+                </div>
+            </div>
+        </div>
+
+        <br><br>
+        <div class="col-md-12">
+            <h5>Loan Requirements</h5>
+        </div>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <label class="text-muted">Loan Type</label> <br>
+                    <p>{{data?.loan_required}}</p>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <label class="text-muted">Loan Amount</label> <br>
+                    <p>{{data?.amount}}</p>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <label class="text-muted">Address Details (Optional)</label> <br>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="text-muted">Flat/Street</label> <br>
+                            <p>{{data?.address_details?.flat_street}}</p>
+                        </div>
+                        <div class="col-md-12">
+                            <label class="text-muted">Address</label> <br>
+                            <p>{{data?.address_details?.address}}</p>
+                        </div>
+                        <div class="col-md-6 col-6">
+                            <label class="text-muted">Pincode</label> <br>
+                            <p>{{data?.address_details?.pincode}}</p>
+                        </div>
+                        <div class="col-md-6 col-6">
+                            <label class="text-muted">City</label> <br>
+                            <p>{{data?.address_details?.city}}</p>
+                        </div>
+                        <div class="col-md-12">
+                            <label class="text-muted">State</label> <br>
+                            <p>{{data?.address_details?.state}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br><br>
+        <div class="col-md-12">
+            <h5>Customer Description*</h5>
+        </div>
+        <div class="col-md-12">
+            <p>{{data?.description}}</p>
+        </div>
+    </div>
+</div>
+<br>

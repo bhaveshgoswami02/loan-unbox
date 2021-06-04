@@ -17,8 +17,12 @@
     font-family: var(--primary-font-family);
 }
 
+.font-small {
+    font-size: small !important;
+}
+
 .tertiary-font {
-    font-size: var(--tertiary-font)!important;
+    font-size: var(--tertiary-font) !important;
 }
 
 body {
@@ -30,14 +34,14 @@ body {
 }
 
 .btn-primary {
-    background-color: var(--primary)!important;
-    color: var(--primary-contrast)!important;
-    border-radius: 0px!important;
-    box-shadow: rgb(0 0 0 / 20%) 0px 3px 1px -2px, rgb(0 0 0 / 14%) 0px 2px 2px 0px, rgb(0 0 0 / 12%) 0px 1px 5px 0px!important;
+    background-color: var(--primary) !important;
+    color: var(--primary-contrast) !important;
+    border-radius: 0px !important;
+    box-shadow: rgb(0 0 0 / 20%) 0px 3px 1px -2px, rgb(0 0 0 / 14%) 0px 2px 2px 0px, rgb(0 0 0 / 12%) 0px 1px 5px 0px !important;
 }
 
 .text-primary {
-    color: var(--primary)!important;
+    color: var(--primary) !important;
 }
 
 .text-primary-contrast {
@@ -45,5 +49,9 @@ body {
 }
 
 h4 {
-    color: var(--primary)!important;
+    color: var(--primary) !important;
+}
+
+.shadow {
+    box-shadow: rgb(0 0 0 / 20%) 0px 3px 1px -2px, rgb(0 0 0 / 14%) 0px 2px 2px 0px, rgb(0 0 0 / 12%) 0px 1px 5px 0px !important;
 }

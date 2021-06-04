@@ -8,85 +8,32 @@
     </div>
 </div>
 
-<ng-container>
+<ng-container *ngIf="allData.length!=0">
     <div class="container my-3">
         <div class="row">
-            <div class="col-md-6 my-3">
-                <div class="card">
+            <div class="col-md-6 my-3" *ngFor="let data of allData">
+                <div class="card" routerLink="/lead/{{data.id}}">
                     <div class="row">
                         <div class="col-6">
-                            <h5>Bhavesh Goswami</h5>
+                            <h5>{{data.name}}</h5>
                         </div>
                         <div class="col-6">
                             <span class="float-right">
-                                time
+                                {{data.timestamp.toDate() | date : 'mediumDate'}}
                             </span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
                             <label>Loan Type:&nbsp;</label>
-                            <span>HL</span>
+                            <span>{{data.loan_required}}</span>
                         </div>
                         <div class="col-12">
                             <label>Status:&nbsp;</label>
-                            <span class="text-warning">Processing</span>
-                            <!-- <span class="text-success">Approved</span>
-                            <span class="text-danger">Declined</span> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 my-3">
-                <div class="card">
-                    <div class="row">
-                        <div class="col-6">
-                            <h5>Bhavesh Goswami</h5>
-                        </div>
-                        <div class="col-6">
-                            <span class="float-right">
-                                time
-                            </span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <label>Loan Type:&nbsp;</label>
-                            <span>HL</span>
-                        </div>
-                        <div class="col-12">
-                            <label>Status:&nbsp;</label>
-                            <span class="text-success">Approved</span>
-                            <!-- <span class="text-warning">Processing</span>
-                            <span class="text-danger">Declined</span> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 my-3">
-                <div class="card">
-                    <div class="row">
-                        <div class="col-6">
-                            <h5>Bhavesh Goswami</h5>
-                        </div>
-                        <div class="col-6">
-                            <span class="float-right">
-                                time
-                            </span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <label>Loan Type:&nbsp;</label>
-                            <span>HL</span>
-                        </div>
-                        <div class="col-12">
-                            <label>Status:&nbsp;</label>
-                            <!--<span class="text-success">Approved</span>
-                             <span class="text-warning">Processing</span> -->
-                            <span class="text-danger">Declined</span> 
+                            <span class="text-warning" *ngIf="data.status == 'pending'">Pending</span>
+                            <span class="text-warning" *ngIf="data.status == 'progress'">Processing</span>
+                            <span class="text-success" *ngIf="data.status == 'approved'">Approved</span>
+                            <span class="text-danger" *ngIf="data.status == 'rejected'">Rejected</span>
                         </div>
                     </div>
                 </div>
@@ -95,7 +42,7 @@
     </div>
 </ng-container>
 
-<ng-container *ngIf="data.length==0">
+<ng-container *ngIf="allData.length==0">
     <empty-view>
         <img src="../../../assets/svg/No data-rafiki.svg" width="100%" alt="">
         <p>No records found</p>

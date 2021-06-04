@@ -27,6 +27,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PasswordComponent } from './auth/password/password.component';
 import { VerifyOtpComponent } from './auth/verify-otp/verify-otp.component';
 import { EmptyViewComponent } from './share/empty-view/empty-view.component';
+import { LeadDetailsComponent } from './components/lead-details/lead-details.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { EmptyViewComponent } from './share/empty-view/empty-view.component';
     FooterComponent,
     PasswordComponent,
     VerifyOtpComponent,
-    EmptyViewComponent
+    EmptyViewComponent,
+    LeadDetailsComponent
   ],
   imports: [
     BrowserModule,

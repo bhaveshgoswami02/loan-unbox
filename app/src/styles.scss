@@ -5,6 +5,8 @@
     --primary: #FD786B;
     --primary-contrast: #fff;
     --primary-font: 16px;
+    --secondary-font: 18px;
+    --tertiary-font: 20px;
     --primary-font-family: 'Poppins', sans-serif;
 }
 
@@ -31,4 +33,8 @@ body {
 
 .text-primary-contrast {
     color: var(--primary-contrast);
+}
+
+h4 {
+    color: var(--primary)!important;
 }

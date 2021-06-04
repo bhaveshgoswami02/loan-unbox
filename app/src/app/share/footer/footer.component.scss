@@ -1,0 +1,25 @@
+.footer {
+    background-color: #222;
+    padding: 30px 0;
+    p {
+        color: #B6B6B6;
+        font-size: var(--primary-font);
+    }
+}
+
+.social-links {
+    color: #B6B6B6;
+    margin-right:  16px;
+    font-size: 22px;
+    text-align: left;
+}
+
+.copyright {
+    color: #B6B6B6;
+}
+
+.footer-heading {
+    color: #fff!important;
+    font-weight: 600;
+    font-size: var(--secondary-font);
+}

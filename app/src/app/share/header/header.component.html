@@ -51,12 +51,12 @@
 </div>
 
 
-<div class="d-lg-none d-md-none d-block">
+<div class="">
     <div class="body">
         <input type="checkbox" id="openSidebarMenu" class="d-none">
         <div style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);" id="sidebarMenu">
             <div class="row">
-              <div class="col-9 bg-primary p-0" style="height: 100vh;">
+              <div class="col-lg-4 col-md-4 col-9 bg-primary p-0" style="height: 100vh;">
                 <ul class="p-0">
                   <li  (click)="toggle()" routerLink="/" style="list-style-type: none;" class="py-2 px-4">
                     <p class="pl-1 mb-0 text-primary-contrast">
@@ -84,7 +84,7 @@
                 </ul>
       
               </div>
-              <div class="col-3" style="background: #00000078;" (click)="toggle()"></div>
+              <div class="col-lg-8 col-md-8 col-3" style="background: #00000078;" (click)="toggle()"></div>
             </div>
           </div>
     </div>

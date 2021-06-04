@@ -88,6 +88,10 @@ export class AuthService {
     localStorage.setItem("userData", JSON.stringify(data))
   }
 
+  getUserDetails() {
+    return JSON.parse(localStorage.getItem('userData') || '{}');
+  }
+
   getUserDataFormDb(id: any) {
     console.log("id", id)
     return this.db.collection("users").doc(id.toString()).get().pipe(

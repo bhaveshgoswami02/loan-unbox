@@ -5,7 +5,7 @@
                 <label #toggler for="openSidebarMenu">
                     <i class="fa fa-bars icon cursor-pointer"></i> &nbsp;&nbsp;
                 </label>
-                <svg class="logo" routerLink="/" xmlns:xlink="http://www.w3.org/1999/xlink" height="26px" version="1.1"
+                <svg class="logo cursor-pointer" routerLink="/" xmlns:xlink="http://www.w3.org/1999/xlink" height="26px" version="1.1"
                     viewBox="0 0 185 26" width="185px" xmlns="http://www.w3.org/2000/svg">
                     <g _ngcontent-sc1="" fill="#fff" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1">
                         <g _ngcontent-sc1="" id="A6" transform="translate(-30.000000, -113.000000)" class="light">
@@ -73,6 +73,12 @@
                   <li  (click)="toggle()" routerLink="/leads" style="list-style-type: none;" class="py-2 px-4">
                     <p class="pl-1 mb-0 text-primary-contrast">
                       <i class="fa fa-list"></i>&nbsp;&nbsp; All Leads</p>
+                  </li>
+                  <hr class="m-0">
+
+                  <li  (click)="toggle()" routerLink="/profile" style="list-style-type: none;" class="py-2 px-4">
+                    <p class="pl-1 mb-0 text-primary-contrast">
+                      <i class="fa fa-user"></i>&nbsp;&nbsp; Manage Profile</p>
                   </li>
                   <hr class="m-0">
 

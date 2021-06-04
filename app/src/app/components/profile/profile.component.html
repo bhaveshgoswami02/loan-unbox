@@ -1,2 +1,44 @@
+<!-- <br><br><br>
 <p>profile works!</p>
-<button class="btn btn-primary" routerLink="/edit-profile">Edit Profile</button>
+<button class="btn btn-primary" routerLink="/edit-profile">Edit Profile</button> -->
+<br><br><br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mx-auto border-bottom text-center pb-3">
+            <div class="d-none d-md-block d-lg-block">
+                <img src="../../../assets/images/user.png" class="rounded-circle" width="20%" alt="">
+            </div>
+            <div class="d-block d-md-none d-lg-none">
+                <img src="../../../assets/images/user.png" class="rounded-circle" width="30%" alt="">
+            </div>
+            <h4 class="mt-1">{{auth.getUserDetails().name}}</h4>
+            <a class="link" routerLink="/edit-profile"><i class="pi pi-user-edit" style="font-size: 20px;"></i> Edit
+                Profile</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 border-bottom mx-auto py-3 cursor-pointer" routerLink="/contact">
+            <span>Contact Us</span>
+            <i class="pi pi-chevron-right float-right"></i>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 border-bottom mx-auto py-3 cursor-pointer" routerLink="/auth/reset-password/{{auth.getUid()}}">
+            <span>Change Password</span>
+            <i class="pi pi-chevron-right float-right"></i>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 border-bottom mx-auto py-3 cursor-pointer" routerLink="/about">
+            <span>About</span>
+            <i class="pi pi-chevron-right float-right"></i>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 border-bottom mx-auto py-3 cursor-pointer" (click)="logout()">
+            <span>Logout</span>
+            <i class="pi pi-chevron-right float-right"></i>
+        </div>
+    </div>
+</div>
+<br><br><br>

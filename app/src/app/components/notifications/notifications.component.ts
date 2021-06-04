@@ -12,7 +12,7 @@ export class NotificationsComponent implements OnInit {
   constructor(public service: NotificationsService) { }
 
   ngOnInit(): void {
-    this.getsingleUserNotifications()
+    // this.getsingleUserNotifications()
   }
 
   getsingleUserNotifications() {

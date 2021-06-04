@@ -1,1 +1,24 @@
-<p>notifications works!</p>
+<br><br><br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 border-bottom">
+            <h4>Notifications</h4>
+            <p class="text-muted">You can see here your all notifications.</p>
+        </div>
+    </div>
+</div>
+
+<ng-container *ngIf="data.length==0">
+    <empty-view>
+        <div class="d-none d-md-block d-lg-block">
+            <img src="../../../assets/svg/bell.svg" width="10%" alt="">
+        </div>
+        <div class="d-block d-md-none d-lg-none">
+            <img src="../../../assets/svg/bell.svg" width="30%" alt="">
+        </div>
+        <br>
+        <b>Oops!</b>
+        <p>You don't have any notifications yet!</p>
+    </empty-view>
+</ng-container>
+<br>

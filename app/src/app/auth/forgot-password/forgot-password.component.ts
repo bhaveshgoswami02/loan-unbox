@@ -68,4 +68,8 @@ export class ForgotPasswordComponent implements OnInit {
     })
   }
 
+  back() {
+    this.common.back()
+  }
+
 }

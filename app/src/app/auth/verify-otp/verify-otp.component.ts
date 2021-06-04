@@ -16,6 +16,9 @@ export class VerifyOtpComponent implements OnInit {
     this.formData = this.fb.group({
       'otp': ['', [Validators.required]],
     })
+    if(!this.auth.mobile_no) {
+      this.router.navigateByUrl("/auth")
+    }
   }
 
   ngOnInit(): void {

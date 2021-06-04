@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { CommonService } from 'src/app/services/common.service';
 
@@ -11,14 +12,16 @@ import { CommonService } from 'src/app/services/common.service';
 export class RegisterComponent implements OnInit {
   formData: FormGroup;
 
-  constructor(private fb: FormBuilder, public common: CommonService, public auth: AuthService) {
+  constructor(private fb: FormBuilder, public common: CommonService, public auth: AuthService,public router:Router) {
     this.formData = this.fb.group({
       'name': ['', [Validators.required]],
       'gender': ['', [Validators.required]],
       'password': ['', [Validators.required, Validators.pattern('(?=\\D*\\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}')]],
       'confirm_password': ['', [Validators.required, Validators.pattern('(?=\\D*\\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}')]]
-
     })
+    if(!this.auth.mobile_no) {
+      this.router.navigateByUrl("/auth")
+    }
   }
 
   ngOnInit(): void {

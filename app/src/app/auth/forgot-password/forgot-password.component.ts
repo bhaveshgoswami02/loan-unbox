@@ -49,6 +49,9 @@ export class ForgotPasswordComponent implements OnInit {
             this.isOtpSent = false
             this.common.stopLoader()
           }
+        },error=>{
+          this.common.stopLoader()
+          this.common.showToast("error", "", "Invalid Phone Number")
         })
       }
       else {

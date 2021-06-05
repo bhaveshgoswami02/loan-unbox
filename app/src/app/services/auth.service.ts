@@ -41,9 +41,11 @@ export class AuthService {
           else {
             // alert("OTP not sent!")
             this.session_id = null
-            this.common.stopLoader()
             this.common.showToast("error", "", res.Status)
           }
+        },error=>{
+          this.common.stopLoader()
+          this.common.showToast("error", "", "Invalid Phone Number")
         })
       }
     })
@@ -62,6 +64,9 @@ export class AuthService {
         this.common.stopLoader()
         this.common.showToast("error", "OTP Not Match", "")
       }
+    },error=>{
+      this.common.stopLoader()
+      this.common.showToast("error", "OTP Not Match", "")
     })
   }
 

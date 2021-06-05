@@ -12,8 +12,11 @@ import { AuthService } from './auth.service';
 export class NotificationsService {
 
   collection:string = "notifications"
+  allData:any = []
+  newNotifications:any = []
 
-  constructor(public db: AngularFirestore, public storage: StorageService, public router: Router, public common: CommonService,public auth:AuthService) { }
+  constructor(public db: AngularFirestore, public storage: StorageService, public router: Router, public common: CommonService,public auth:AuthService) {
+  }
 
   getAll() {
     return this.db.collection(this.collection,ref=>ref.orderBy("timestamp","desc")).get().pipe(
@@ -22,7 +25,16 @@ export class NotificationsService {
         const id = a.id;
         return { id, ...data };
       }))
-    )
+    ).subscribe(async res=>{
+      this.allData = await this.allData.concat(res)
+      this.allData = this.allData.sort((a:any,b:any)=> (a.timestamp > b.timestamp ? -1 : 1))
+      this.allData.forEach((element:any) => {
+        let timestamp = this.getLastNotification().timestamp.seconds
+        if(timestamp < element.timestamp.seconds ) {
+          this.newNotifications.push(element)
+        }
+      });
+    })  
   }
 
   getSingleUserNotifications() {
@@ -32,7 +44,18 @@ export class NotificationsService {
         const id = a.id;
         return { id, ...data };
       }))
-    )
+    ).subscribe(res=>{
+      this.allData = res
+      this.getAll()
+    })
+  }
+
+  setLastNotification(lastNotification:any) {
+    localStorage.setItem("lastNotification",JSON.stringify(lastNotification))
+  }
+
+  getLastNotification() {
+    return JSON.parse(localStorage.getItem('lastNotification') || '{}');
   }
 
 }

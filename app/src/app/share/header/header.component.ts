@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { NotificationsService } from 'src/app/services/notifications.service';
 
 @Component({
   selector: 'app-header',
@@ -10,9 +11,10 @@ export class HeaderComponent implements OnInit {
 
   @ViewChild('toggler') toggler:ElementRef | undefined
 
-  constructor(public auth:AuthService) { }
+  constructor(public auth:AuthService,public notificationService:NotificationsService) { }
 
   ngOnInit(): void {
+    this.notificationService.getSingleUserNotifications()
   }
 
   toggle(){

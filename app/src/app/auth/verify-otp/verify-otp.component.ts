@@ -39,7 +39,7 @@ export class VerifyOtpComponent implements OnInit {
         if (res.Status == "Success") {
           this.auth.session_id = res.Details
           this.common.stopLoader()
-          this.common.showToast("error", "", "OTP Resent Successful!")
+          this.common.showToast("success", "", "OTP Resent Successful!")
           this.router.navigateByUrl('/auth/verify-otp')
         }
         else {
@@ -47,6 +47,9 @@ export class VerifyOtpComponent implements OnInit {
           this.common.stopLoader()
           this.common.showToast("error", "", "Otp not sent!")
         }
+      },error=>{
+        this.common.stopLoader()
+        this.common.showToast("error","","Invalid Phone Number")
       })
     }
     else

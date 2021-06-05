@@ -12,6 +12,7 @@
             <tr>
               <th scope="col">#</th>
               <th scope="col">Connector Code</th>
+              <th scope="col">Connector Name</th>
               <th scope="col">Name</th>
               <th scope="col">Email</th>
               <th scope="col">Mobile</th>
@@ -27,6 +28,7 @@
             <tr *ngFor="let data of allData;let i = index">
               <td>{{i+1}}</td>
               <td>{{data?.connector_code}}</td>
+              <td>{{data?.connectorDetails?.firstName}} {{data?.connectorDetails?.middleName}} {{data?.connectorDetails?.lastName}}</td>
               <td style="text-transform: capitalize;">{{data?.prefix}} {{data?.firstName}} {{data?.middleName}}
                 {{data?.lastName}}</td>
               <td>{{data?.email}}</td>

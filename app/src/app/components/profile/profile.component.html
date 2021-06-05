@@ -1,12 +1,14 @@
-<br><br><br>
-<div class="container">
+<br><br><br><br>
+<div class="container" style="min-height: 60vh;">
     <div class="row">
         <div class="col-md-6 mx-auto border-bottom text-center pb-3">
             <div class="d-none d-md-block d-lg-block">
-                <img src="../../../assets/images/user.png" class="rounded-circle" width="20%" alt="">
+                <img [src]="auth.getUserDetails()?.imgUrl" *ngIf="auth.getUserDetails()?.imgUrl" class="rounded-circle" width="20%" alt="">
+                <img src="../../../assets/images/user.png" *ngIf="!auth.getUserDetails()?.imgUrl" class="rounded-circle" width="20%" alt="">
             </div>
             <div class="d-block d-md-none d-lg-none">
-                <img src="../../../assets/images/user.png" class="rounded-circle" width="30%" alt="">
+                <img [src]="auth.getUserDetails()?.imgUrl" *ngIf="auth.getUserDetails()?.imgUrl" class="rounded-circle" width="30%" alt="">
+                <img src="../../../assets/images/user.png" *ngIf="!auth.getUserDetails()?.imgUrl" class="rounded-circle" width="30%" alt="">
             </div>
             <h4 class="mt-1">{{auth.getUserDetails().name}}</h4>
             <a class="link" routerLink="/edit-profile"><i class="pi pi-user-edit" style="font-size: 20px;"></i> Edit
@@ -14,20 +16,8 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6 border-bottom mx-auto py-3 cursor-pointer" routerLink="/contact">
-            <span>Contact Us</span>
-            <i class="pi pi-chevron-right float-right"></i>
-        </div>
-    </div>
-    <div class="row">
         <div class="col-md-6 border-bottom mx-auto py-3 cursor-pointer" routerLink="/auth/reset-password/{{auth.getUid()}}">
             <span>Change Password</span>
-            <i class="pi pi-chevron-right float-right"></i>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6 border-bottom mx-auto py-3 cursor-pointer" routerLink="/about">
-            <span>About</span>
             <i class="pi pi-chevron-right float-right"></i>
         </div>
     </div>

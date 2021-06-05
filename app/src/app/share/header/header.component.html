@@ -1,12 +1,12 @@
 <div class="header">
     <div class="container-fluid">
-        <div class="row my-auto">
-            <div class="col-md-6 col-10 logo">
-                <label #toggler for="openSidebarMenu">
+        <div class="row mt-2">
+            <div class="col-md-6 col-10 d-flex logo">
+                <label class="d-block d-md-none d-lg-none mt-2" #toggler for="openSidebarMenu">
                     <i class="fa fa-bars icon cursor-pointer"></i> &nbsp;&nbsp;
                 </label>
-                <svg class="logo cursor-pointer" routerLink="/" xmlns:xlink="http://www.w3.org/1999/xlink" height="26px" version="1.1"
-                    viewBox="0 0 185 26" width="185px" xmlns="http://www.w3.org/2000/svg">
+                <svg class="logo cursor-pointer" routerLink="/" xmlns:xlink="http://www.w3.org/1999/xlink" height="26px"
+                    version="1.1" viewBox="0 0 185 26" width="185px" xmlns="http://www.w3.org/2000/svg">
                     <g _ngcontent-sc1="" fill="#fff" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1">
                         <g _ngcontent-sc1="" id="A6" transform="translate(-30.000000, -113.000000)" class="light">
                             <g _ngcontent-sc1="" id="Group" transform="translate(30.000000, 113.000000)">
@@ -32,20 +32,20 @@
                     <a class="link d-none d-md-block d-lg-block" routerLink="/lead" routerLinkActive="active">Lead</a>
                     <a class="link d-none d-md-block d-lg-block" routerLink="/leads" routerLinkActive="active">All
                         Leads</a>
-                    <a class="link d-none d-md-block d-lg-block" routerLink="/about" routerLinkActive="active">About Us</a>
-                    <a class="link d-none d-md-block d-lg-block" routerLink="/contact" routerLinkActive="active">Contact Us</a>
+                    <a class="link d-none d-md-block d-lg-block" routerLink="/about" routerLinkActive="active">About
+                        Us</a>
+                    <a class="link d-none d-md-block d-lg-block" routerLink="/contact" routerLinkActive="active">Contact
+                        Us</a>
                     <a class="link d-none d-md-block d-lg-block" routerLink="/profile"
                         routerLinkActive="active">Profile</a>
+                    <a class="link d-none d-md-block d-lg-block" (click)="logout()" routerLinkActive="active">Logout</a>
                     <a class="link" routerLink="/notifications">
                         <div class="notifications">
                             <i class="fa fa-bell"></i>
-                            <span class="badge" *ngIf="this.notificationService.newNotifications.length!=0">{{this.notificationService.newNotifications.length}}</span>
+                            <span class="badge"
+                                *ngIf="this.notificationService.newNotifications.length!=0">{{this.notificationService.newNotifications.length}}</span>
                         </div>
                     </a>
-                    <button class="btn-logout d-none d-md-block d-lg-block" (click)="logout()">
-                        <i class="fa fa-sign-out"></i>
-                        Logout
-                    </button>
                 </div>
             </div>
         </div>
@@ -53,47 +53,94 @@
 </div>
 
 
-<div class="">
+<div class="d-block d-md-none d-lg-none">
     <div class="body">
         <input type="checkbox" id="openSidebarMenu" class="d-none">
         <div style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);" id="sidebarMenu">
             <div class="row">
-              <div class="col-lg-4 col-md-4 col-9 bg-primary p-0" style="height: 100vh;">
-                <ul class="p-0">
-                  <li  (click)="toggle()" routerLink="/" style="list-style-type: none;" class="py-2 px-4">
-                    <p class="pl-1 mb-0 text-primary-contrast">
-                      <i class="fa fa-home"></i>&nbsp;&nbsp; Home</p>
-                  </li>
-                  <hr class="m-0">
-                  
-                  <li  (click)="toggle()" routerLink="/lead" style="list-style-type: none;" class="py-2 px-4">
-                    <p class="pl-1 mb-0 text-primary-contrast">
-                      <i class="fa fa-plus"></i>&nbsp;&nbsp; Lead</p>
-                  </li>
-                  <hr class="m-0">
+                <div class="col-lg-4 col-md-4 col-9 bg-primary p-0" style="height: 100vh;">
+                    <ul class="p-0">
+                        <li style="list-style-type: none;" class="py-3 px-4">
+                            <p class="pl-1 mb-0 text-primary-contrast">
+                                <svg class="logo cursor-pointer" routerLink="/"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" height="26px" version="1.1"
+                                    viewBox="0 0 185 26" width="185px" xmlns="http://www.w3.org/2000/svg">
+                                    <g _ngcontent-sc1="" fill="#fff" fill-rule="evenodd" id="Page-1" stroke="none"
+                                        stroke-width="1">
+                                        <g _ngcontent-sc1="" id="A6" transform="translate(-30.000000, -113.000000)"
+                                            class="light">
+                                            <g _ngcontent-sc1="" id="Group"
+                                                transform="translate(30.000000, 113.000000)">
+                                                <g _ngcontent-sc1="" fill-rule="nonzero" id="icon">
+                                                    <polygon _ngcontent-sc1="" id="Path"
+                                                        points="0 0 0 5.60685249 16.0895884 9.02481464 16.0895884 19.6593673 5.84695881 19.6593673 5.84695881 9.64003334 0 9.64003334 0 26 22 26 22 4.57337499">
+                                                    </polygon>
+                                                </g><text _ngcontent-sc1=""
+                                                    font-family="Avenir, IBM Plex Sans, sans-serif" font-size="19"
+                                                    font-weight="600" id="LoanUnbox.com" letter-spacing="0.527777778"
+                                                    class="light">
+                                                    <tspan _ngcontent-sc1="" x="32.1449444" y="21">LoanUnbox</tspan>
+                                                </text>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </svg>
+                                <i class="pi pi-times float-right mt-1 tertiary-font" (click)="toggle()"></i>
+                            </p>
+                        </li>
+                        <li (click)="toggle()" routerLink="/" style="list-style-type: none;" class="py-3 px-4">
+                            <p class="pl-1 mb-0 text-primary-contrast">
+                                <i class="pi pi-home tertiary-font"></i>&nbsp;&nbsp; Home
+                            </p>
+                        </li>
+                        <hr class="m-0">
 
-                  <li  (click)="toggle()" routerLink="/leads" style="list-style-type: none;" class="py-2 px-4">
-                    <p class="pl-1 mb-0 text-primary-contrast">
-                      <i class="fa fa-list"></i>&nbsp;&nbsp; All Leads</p>
-                  </li>
-                  <hr class="m-0">
+                        <li (click)="toggle()" routerLink="/lead" style="list-style-type: none;" class="py-3 px-4">
+                            <p class="pl-1 mb-0 text-primary-contrast">
+                                <i class="pi pi-plus tertiary-font"></i>&nbsp;&nbsp; Lead
+                            </p>
+                        </li>
+                        <hr class="m-0">
 
-                  <li  (click)="toggle()" routerLink="/profile" style="list-style-type: none;" class="py-2 px-4">
-                    <p class="pl-1 mb-0 text-primary-contrast">
-                      <i class="fa fa-user"></i>&nbsp;&nbsp; Manage Profile</p>
-                  </li>
-                  <hr class="m-0">
+                        <li (click)="toggle()" routerLink="/leads" style="list-style-type: none;" class="py-3 px-4">
+                            <p class="pl-1 mb-0 text-primary-contrast">
+                                <i class="pi pi-list tertiary-font"></i>&nbsp;&nbsp; All Leads
+                            </p>
+                        </li>
+                        <hr class="m-0">
 
-                  <li  (click)="logout()" routerLink="/leads" style="list-style-type: none;" class="py-2 px-4">
-                    <p class="pl-1 mb-0 text-primary-contrast">
-                      <i class="fa fa-sign-out"></i>&nbsp;&nbsp; Logout</p>
-                  </li>
-                  <hr class="m-0">
-                </ul>
-      
-              </div>
-              <div class="col-lg-8 col-md-8 col-3" style="background: #00000078;" (click)="toggle()"></div>
+                        <li (click)="toggle()" routerLink="/about" style="list-style-type: none;" class="py-3 px-4">
+                            <p class="pl-1 mb-0 text-primary-contrast">
+                                <i class="pi pi-info-circle tertiary-font"></i>&nbsp;&nbsp; About Us
+                            </p>
+                        </li>
+                        <hr class="m-0">
+
+                        <li (click)="toggle()" routerLink="/contact" style="list-style-type: none;" class="py-3 px-4">
+                            <p class="pl-1 mb-0 text-primary-contrast">
+                                <i class="pi pi-phone tertiary-font"></i>&nbsp;&nbsp; Contact Us
+                            </p>
+                        </li>
+                        <hr class="m-0">
+
+                        <li (click)="toggle()" routerLink="/profile" style="list-style-type: none;" class="py-3 px-4">
+                            <p class="pl-1 mb-0 text-primary-contrast">
+                                <i class="pi pi-user tertiary-font"></i>&nbsp;&nbsp; Manage Profile
+                            </p>
+                        </li>
+                        <hr class="m-0">
+
+                        <li (click)="logout()" routerLink="/leads" style="list-style-type: none;" class="py-3 px-4">
+                            <p class="pl-1 mb-0 text-primary-contrast">
+                                <i class="pi pi-sign-out tertiary-font"></i>&nbsp;&nbsp; Logout
+                            </p>
+                        </li>
+                        <hr class="m-0">
+                    </ul>
+
+                </div>
+                <div class="col-lg-8 col-md-8 col-3" style="background: #00000078;" (click)="toggle()"></div>
             </div>
-          </div>
+        </div>
     </div>
 </div>

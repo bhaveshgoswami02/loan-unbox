@@ -10,6 +10,19 @@
         <form [formGroup]="formData" (ngSubmit)="onSubmit()">
             <div class="col-md-12 my-3">
                 <div class="row">
+                    <div class="col-md-2 col-6 my-auto">
+                        <label class="text-muted">Connector Code</label>
+                        <p>{{connector_code}}</p>
+                    </div>
+                    <div class="col-md-6 col-6 my-2">
+                        <div class="d-none d-md-block d-lg-block">
+                            <img [src]="imageSrc" (click)="file.click()" class="rounded-circle cursor-pointer" width="20%" alt="">
+                        </div>
+                        <div class="d-block d-md-none d-lg-none">
+                            <img [src]="imageSrc" (click)="file.click()" class="rounded-circle" width="60%" alt="">
+                        </div>
+                        <input #file type="file" formControlName="file" class="d-none" (change)="onSelectFile($event)">
+                    </div>
                     <div class="col-md-6 my-2">
                         <label>Enter your first name*</label>
                         <input type="text" formControlName="firstName" class="form-control border"

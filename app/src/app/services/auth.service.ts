@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 import { CommonService } from './common.service';
 import firebase from 'firebase';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class AuthService {
   mobile_no: any
   session_id: any = null
 
-  constructor(public http: HttpClient, public db: AngularFirestore, public router: Router, public common: CommonService) { }
+  constructor(public http: HttpClient, public db: AngularFirestore, public router: Router, public common: CommonService, public storage: StorageService) { }
 
   sendOtp(mobile_no: number) {
     let url = "https://2factor.in/API/V1/" + environment.otpApi + "/SMS/91" + mobile_no + "/AUTOGEN"
@@ -43,7 +44,7 @@ export class AuthService {
             this.session_id = null
             this.common.showToast("error", "", res.Status)
           }
-        },error=>{
+        }, error => {
           this.common.stopLoader()
           this.common.showToast("error", "", "Invalid Phone Number")
         })
@@ -64,7 +65,7 @@ export class AuthService {
         this.common.stopLoader()
         this.common.showToast("error", "OTP Not Match", "")
       }
-    },error=>{
+    }, error => {
       this.common.stopLoader()
       this.common.showToast("error", "OTP Not Match", "")
     })
@@ -119,26 +120,26 @@ export class AuthService {
     )
   }
 
-  updateUser(uid:any,data: any) {
+  updateUser(uid: any, data: any) {
     this.common.showLoader()
-    return this.db.collection("users").doc(uid).update(data).then(res=>{
+    return this.db.collection("users").doc(uid).update(data).then(res => {
       this.setUser(data)
-      this.common.showToast("success","User Updated Successful!","")
-    }).catch(err=>{
-      this.common.showToast("error","Error",err)
-    }).finally(()=>{
+      this.common.showToast("success", "User Updated Successful!", "")
+    }).catch(err => {
+      this.common.showToast("error", "Error", err)
+    }).finally(() => {
       this.common.stopLoader()
     })
   }
 
-  resetPasswword(uid:any,data: any) {
+  resetPasswword(uid: any, data: any) {
     this.common.showLoader()
-    return this.db.collection("users").doc(uid).update(data).then(res=>{
-      this.common.showToast("success","Password Updated Successful!","Please Login Again!")
+    return this.db.collection("users").doc(uid).update(data).then(res => {
+      this.common.showToast("success", "Password Updated Successful!", "Please Login Again!")
       this.logout()
-    }).catch(err=>{
-      this.common.showToast("error","Error",err)
-    }).finally(()=>{
+    }).catch(err => {
+      this.common.showToast("error", "Error", err)
+    }).finally(() => {
       this.common.stopLoader()
     })
   }
@@ -155,6 +156,34 @@ export class AuthService {
   logout() {
     this.removeUserData()
     this.router.navigateByUrl("/auth")
+  }
+
+  profileUpdate(id: any, data: any, img?: any) {
+    this.common.showLoader()
+    let path = "users" + "/" + id + "/" + "users";
+    if (img) {
+      return this.storage.upload(path, img).then((newUrl: any) => {
+        this.profileUpdate(id, { imgUrl: newUrl, ...data });
+      }).catch((err: any) => {
+        this.common.showToast("error", "Error", err)
+      }).finally(() => {
+        this.common.stopLoader()
+        // this.router.navigateByUrl("/"+"users")
+      })
+    } else {
+      return this.db.collection("users").doc(id).update(data).then(res => {
+        // this.router.navigateByUrl("/"+"users")
+        this.getUserDataFormDb(this.getUid()).subscribe(res=>{
+          this.setUser(res)
+        })
+        this.common.showToast("success", "Successful", "User Updated!")
+      }).catch(err => {
+        this.common.showToast("error", "Error", err)
+        return err;
+      }).finally(() => {
+        this.common.stopLoader()
+      })
+    }
   }
 
 }

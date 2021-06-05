@@ -39,6 +39,7 @@ export class LeadComponent implements OnInit {
 
   onSubmit() {
     this.formData.value.status = "pending"
+    this.formData.value.connector_code = this.auth.getUserDetails().connector_code
     this.service.add(this.formData.value)
   }
 

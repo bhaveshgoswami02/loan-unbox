@@ -9,7 +9,9 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class EditProfileComponent implements OnInit {
   formData: FormGroup;
-
+  imageSrc: any = "../../../assets/images/user.png";
+  imageFile: any;
+  connector_code:any
   constructor(private fb: FormBuilder, public auth: AuthService) {
     this.formData = this.fb.group({
       'firstName': ['', [Validators.required]],
@@ -17,6 +19,7 @@ export class EditProfileComponent implements OnInit {
       'dob': ['', [Validators.required]],
       'email': ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]],
       'gender': ['', [Validators.required]],
+      'file': [''],
       'address_details': this.fb.group({
         'flat_street': [''],
         'address': [''],
@@ -42,6 +45,7 @@ export class EditProfileComponent implements OnInit {
         'dob': [res?.dob, [Validators.required]],
         'email': [res?.email, [Validators.required]],
         'gender': [res?.gender, [Validators.required]],
+        'file': [''],
         'address_details': this.fb.group({
           'flat_street': [res?.address_details?.flat_street],
           'address': [res?.address_details?.address],
@@ -50,11 +54,28 @@ export class EditProfileComponent implements OnInit {
           'state': [res?.address_details?.state],
         })
       })
+      this.imageSrc = res?.imgUrl
+      this.connector_code = res?.connector_code
     })
   }
 
+  onSelectFile(event: any) {
+    const reader = new FileReader();
+    if (event.target.files) {
+      const [file] = event.target.files;
+      this.imageFile = event.target.files[0];
+      console.log("imageFile", this.imageFile)
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.imageSrc = reader.result as string;
+        console.log(this.imageSrc)
+      };
+    }
+  }
+
   onSubmit() {
-    this.auth.updateUser(this.auth.getUid(), this.formData.value)
+    delete this.formData.value.file
+    this.auth.profileUpdate(this.auth.getUid(), this.formData.value, this.imageFile)
   }
 
 }

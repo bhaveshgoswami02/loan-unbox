@@ -20,7 +20,23 @@
 }
 
 .font-small {
-    font-size: small !important;
+    font-size: 14px !important;
+}
+
+.font-x-small {
+    font-size: 12px !important;
+}
+
+.font-xx-small {
+    font-size: 10px !important;
+}
+
+.primary-font {
+    font-size: var(--primary-font) !important;
+}
+
+.secondary-font {
+    font-size: var(--secondary-font) !important;
 }
 
 .tertiary-font {
@@ -56,4 +72,20 @@ h4 {
 
 .shadow {
     box-shadow: rgb(0 0 0 / 20%) 0px 3px 1px -2px, rgb(0 0 0 / 14%) 0px 2px 2px 0px, rgb(0 0 0 / 12%) 0px 1px 5px 0px !important;
+}
+
+.capitalize {
+    text-transform: capitalize!important;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

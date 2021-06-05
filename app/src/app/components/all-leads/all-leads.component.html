@@ -15,7 +15,7 @@
                 <div class="card" routerLink="/lead/{{data.id}}">
                     <div class="row">
                         <div class="col-6">
-                            <h5>{{data?.firstName}} {{data?.middleName}} {{data?.lastName}}</h5>
+                            <h5 class="primary-font capitalize">{{data?.firstName}} {{data?.middleName}} {{data?.lastName}}</h5>
                         </div>
                         <div class="col-6">
                             <span class="float-right">
@@ -25,15 +25,15 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <label>Loan Type:&nbsp;</label>
-                            <span>{{data.loan_required}}</span>
+                            <label class="font-small m-0">Loan Type:&nbsp;</label>
+                            <span class="font-small m-0">{{data.loan_required}}</span>
                         </div>
                         <div class="col-12">
-                            <label>Status:&nbsp;</label>
-                            <span class="text-warning" *ngIf="data.status == 'pending'">Pending</span>
-                            <span class="text-warning" *ngIf="data.status == 'progress'">Processing</span>
-                            <span class="text-success" *ngIf="data.status == 'approved'">Approved</span>
-                            <span class="text-danger" *ngIf="data.status == 'rejected'">Rejected</span>
+                            <label class="font-x-small">Status:&nbsp;</label>
+                            <span class="text-warning font-x-small" *ngIf="data.status == 'pending'">Pending</span>
+                            <span class="text-warning font-x-small" *ngIf="data.status == 'progress'">Processing</span>
+                            <span class="text-success font-x-small" *ngIf="data.status == 'approved'">Approved</span>
+                            <span class="text-danger font-x-small" *ngIf="data.status == 'rejected'">Rejected</span>
                         </div>
                     </div>
                 </div>

@@ -1,50 +1,60 @@
 <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 bg-color" style="background-color: #F7F7F9;min-height: 100vh;">
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-      <h4>All Leads</h4>
-    </div>
-  
-    <div
-      class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center rounded mb-3 border-bottom bg-white p-3">
-      <ng-container>
-        <div class="table-responsive">
-          <table class="table">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Mobile</th>
-                <th scope="col">Amount</th>
-                <th scope="col">Loan Required</th>
-                <th scope="col">Description</th>
-                <th scope="col">Date</th>
-                <th scope="col">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let data of allData;let i = index">
-                <td>{{i+1}}</td>
-                <td style="text-transform: capitalize;">{{data?.prefix}} {{data?.firstName}} {{data?.middleName}} {{data?.lastName}}</td>
-                <td>{{data?.email}}</td>
-                <td>{{data?.mobile_no}}</td>
-                <td>{{data?.amount}}</td>
-                <td>{{data?.loan_required}}</td>
-                <td>{{data?.description}}</td>
-                <td>{{data?.timestamp.toDate() | date : 'mediumDate'}}</td>
-                <td>
-                    <select name="status" [ngModel]="data.status" (change)="onStatusChange(data.id,$event)">
-                        <option value="pending">Pending</option>
-                        <option value="progress">Progress</option>
-                        <option value="approved">Approved</option>
-                        <option value="rejected">Rejected</option>
-                    </select>
-                </td>
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h4>All Leads</h4>
+  </div>
 
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </ng-container>
-    </div>
-    <br><br>
-  </main>
+  <div
+    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center rounded mb-3 border-bottom bg-white p-3">
+    <ng-container>
+      <div class="table-responsive" style="overflow-x:scroll">
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Connector Code</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Mobile</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Loan Required</th>
+              <th scope="col">Description</th>
+              <th scope="col">Address</th>
+              <th scope="col">Date</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of allData;let i = index">
+              <td>{{i+1}}</td>
+              <td>{{data?.connector_code}}</td>
+              <td style="text-transform: capitalize;">{{data?.prefix}} {{data?.firstName}} {{data?.middleName}}
+                {{data?.lastName}}</td>
+              <td>{{data?.email}}</td>
+              <td>{{data?.mobile_no}}</td>
+              <td>{{data?.amount}}</td>
+              <td>{{data?.loan_required}}</td>
+              <td>{{data?.description}}</td>
+              <td>
+                {{data?.address_details?.flat_street}}, <br>
+                {{data?.address_details?.address}}, <br>
+                {{data?.address_details?.city}}, {{data?.address_details?.pincode}} <br>
+                {{data?.address_details?.state}}
+              </td>
+              <td>{{data?.timestamp.toDate() | date : 'mediumDate'}}</td>
+              <td>
+                <select name="status" [ngModel]="data.status" (change)="onStatusChange(data.id,$event)">
+                  <option value="pending">Pending</option>
+                  <option value="progress">Progress</option>
+                  <option value="approved">Approved</option>
+                  <option value="rejected">Rejected</option>
+                </select>
+              </td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </ng-container>
+  </div>
+  <br><br>
+</main>

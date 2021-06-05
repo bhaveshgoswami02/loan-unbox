@@ -27,52 +27,6 @@
                 <h3>Register</h3>
             </div>
 
-            <!-- <form [formGroup]="formData" (ngSubmit)="onSubmit()">
-                <label>Please enter your name*</label>
-                <input type="text" formControlName="name" class="form-control border" placeholder="Enter Name*">
-                <div *ngIf="validation.name.errors && validation.name.dirty">
-                    <div class="text-danger" *ngIf="validation.name?.errors?.required">Field is required!
-                    </div>
-                </div>
-                <div class="form-check mt-2">
-                    <input class="form-check-input" type="radio" formControlName="gender" value="male" id="male">
-                    <label class="form-check-label" for="male">
-                        Male
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" formControlName="gender" value="female" id="female">
-                    <label class="form-check-label" for="female">
-                        Female
-                    </label>
-                </div>
-                <label class="mt-2">Please enter your password*</label>
-                <input type="password" class="form-control border w-100" formControlName="password"
-                    placeholder="Create Password">
-                <div *ngIf="validation.password.errors && validation.password.dirty">
-                    <div class="text-danger" *ngIf="validation.password.errors?.required">Password is
-                        required!
-                    </div>
-                    <div class="text-danger" *ngIf="validation.password.errors?.pattern">
-                        Your password must be have at least <br>
-                        <ul>
-                            <li>1 Uppercase & 1 lowercase character</li>
-                            <li>1 Number</li>
-                        </ul>
-                    </div>
-                </div>
-                <label class="mt-2">Please confirm your password*</label>
-                <input type="text" class="form-control border w-100" formControlName="confirm_password"
-                    (keyup)="comparePassword()" placeholder="Confirm Password">
-                <div *ngIf="validation.confirm_password.errors && validation.confirm_password.dirty">
-                    <div class="text-danger" *ngIf="validation.confirm_password?.errors?.required">Please Confirm the
-                        password!</div>
-                </div>
-                <p class="text-danger m-0" *ngIf="!comparePassword() && validation.confirm_password.dirty">
-                    Password not match!</p>
-                <br>
-                <button class="btn btn-primary my-4 w-100" [disabled]="formData.invalid">Next</button>
-            </form> -->
             <form [formGroup]="formData" (ngSubmit)="onSubmit()">
                 <div class="col-md-12 my-3 px-0">
                     <div class="row">

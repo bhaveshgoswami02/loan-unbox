@@ -9,7 +9,7 @@
 </div>
 
 <ng-container *ngIf="allData.length!=0">
-    <div class="container my-3">
+    <div class="container my-3" style="min-height: 60vh;">
         <div class="row">
             <div class="col-md-6 my-3" *ngFor="let data of allData">
                 <div class="card" routerLink="/lead/{{data.id}}">

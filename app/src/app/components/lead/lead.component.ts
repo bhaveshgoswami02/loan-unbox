@@ -20,7 +20,7 @@ export class LeadComponent implements OnInit {
       'email': ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]],
       'mobile_no': ['', [Validators.required]],
       'loan_required': ['', [Validators.required]],
-      'description': ['', [Validators.required]],
+      'description': [''],
       'amount': [0, [Validators.required]],
       'address_details': this.fb.group({
         'flat_street': [''],
@@ -40,6 +40,7 @@ export class LeadComponent implements OnInit {
   onSubmit() {
     this.formData.value.status = "pending"
     this.formData.value.connector_code = this.auth.getUserDetails().connector_code
+    this.formData.value.connectorDetails = this.auth.getUserDetails()
     this.service.add(this.formData.value)
   }
 

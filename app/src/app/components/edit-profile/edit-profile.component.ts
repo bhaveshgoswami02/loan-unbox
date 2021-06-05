@@ -54,7 +54,9 @@ export class EditProfileComponent implements OnInit {
           'state': [res?.address_details?.state],
         })
       })
-      this.imageSrc = res?.imgUrl
+      if(res?.imgUrl) {
+        this.imageSrc = res?.imgUrl
+      }
       this.connector_code = res?.connector_code
     })
   }

@@ -17,7 +17,7 @@ export class LeadComponent implements OnInit {
       'firstName': ['', [Validators.required]],
       'middleName': [''],
       'lastName': ['', [Validators.required]],
-      'email': ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]],
+      'email': [''],
       'mobile_no': ['', [Validators.required]],
       'loan_required': ['', [Validators.required]],
       'description': [''],

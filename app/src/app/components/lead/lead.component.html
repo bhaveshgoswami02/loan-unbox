@@ -1,4 +1,4 @@
-<br><br><br>
+<br><br><br><br>
 <div class="container">
     <div class="row">
         <div class="col-md-12 border-bottom">
@@ -57,12 +57,6 @@
                     <div class="col-md-6 my-2 col-12">
                         <input type="email" formControlName="email" class="form-control border"
                             placeholder="Enter Email-ID*">
-                        <div *ngIf="validation.email.errors && validation.email.dirty">
-                            <div class="text-danger" *ngIf="validation.email?.errors?.required">Email is required</div>
-                            <div class="text-danger" *ngIf="validation.email?.errors?.pattern">Email must be a valid
-                                email
-                                address</div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -75,27 +69,12 @@
                 <div class="row">
                     <div class="col-md-4 mb-4">
                         <label class="text-muted">Loan required For</label> <br>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" formControlName="loan_required"
-                                value="New Property" id="new_property">
-                            <label class="form-check-label" for="new_property">
-                                New Property
-                            </label>
-                        </div>
 
                         <div class="form-check">
                             <input class="form-check-input" type="radio" formControlName="loan_required"
-                                value="Resale Property" id="resale_property">
-                            <label class="form-check-label" for="resale_property">
-                                Resale Property
-                            </label>
-                        </div>
-
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" formControlName="loan_required"
-                                value="Self Construction" id="self_construction">
-                            <label class="form-check-label" for="self_construction">
-                                Self Construction
+                                value="Home loan" id="home_loan">
+                            <label class="form-check-label" for="home_loan">
+                                Home loan
                             </label>
                         </div>
 
@@ -103,15 +82,55 @@
                             <input class="form-check-input" type="radio" formControlName="loan_required"
                                 value="Loan Against Property" id="loan_against_property">
                             <label class="form-check-label" for="loan_against_property">
-                                Loan Against Property
+                                Loan against property
                             </label>
                         </div>
 
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" formControlName="loan_required" value="Other"
-                                id="other">
-                            <label class="form-check-label" for="other">
-                                Other
+                            <input class="form-check-input" type="radio" formControlName="loan_required"
+                                value="Personal Loan" id="personal_loan">
+                            <label class="form-check-label" for="personal_loan">
+                                Personal Loan
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" formControlName="loan_required"
+                                value="Business Loan" id="business_loan">
+                            <label class="form-check-label" for="business_loan">
+                                Business Loan
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" formControlName="loan_required"
+                                value="SME / MSME  Loan" id="sme">
+                            <label class="form-check-label" for="sme">
+                                SME / MSME  Loan
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" formControlName="loan_required"
+                                value="Vehicle Loan" id="vehicle_loan">
+                            <label class="form-check-label" for="vehicle_loan">
+                                Vehicle Loan
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" formControlName="loan_required"
+                                value="Credit cards" id="credit_cards">
+                            <label class="form-check-label" for="credit_cards">
+                                Credit cards
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" formControlName="loan_required" value="Others"
+                                id="others">
+                            <label class="form-check-label" for="others">
+                                Others
                             </label>
                         </div>
                     </div>
@@ -152,7 +171,7 @@
 
             <br><br>
             <div class="col-md-12">
-                <h5>Customer Description*</h5>
+                <h5>Customer Description</h5>
             </div>
             <div class="col-md-12">
                 <textarea formControlName="description" class="form-control border" placeholder="Something about the loan taken" rows="4"></textarea>

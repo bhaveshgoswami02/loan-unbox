@@ -18,7 +18,8 @@ export class AuthService {
   constructor(public http: HttpClient, public db: AngularFirestore, public router: Router, public common: CommonService, public storage: StorageService) { }
 
   sendOtp(mobile_no: number) {
-    let url = "https://2factor.in/API/V1/" + environment.otpApi + "/SMS/91" + mobile_no + "/AUTOGEN"
+    let otp = this.common.generateOtp()
+    let url = "https://2factor.in/API/V1/" + environment.otpApi + "/SMS/91" + mobile_no + "/" + otp + "/OTP-Partner"
     return this.http.get(url)
   }
 

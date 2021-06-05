@@ -1,4 +1,4 @@
-<br><br><br>
+<br><br><br><br>
 <div class="container">
     <div class="row">
         <div class="col-md-12 border-bottom">
@@ -15,12 +15,8 @@
                         <p>{{connector_code}}</p>
                     </div>
                     <div class="col-md-6 col-6 my-2">
-                        <div class="d-none d-md-block d-lg-block">
-                            <img [src]="imageSrc" (click)="file.click()" class="rounded-circle cursor-pointer" width="20%" alt="">
-                        </div>
-                        <div class="d-block d-md-none d-lg-none">
-                            <img [src]="imageSrc" (click)="file.click()" class="rounded-circle" width="60%" alt="">
-                        </div>
+                        <img [src]="imageSrc" (click)="file.click()" class="rounded-circle cursor-pointer" width="120px"
+                            height="120px" alt="">
                         <input #file type="file" formControlName="file" class="d-none" (change)="onSelectFile($event)">
                     </div>
                     <div class="col-md-6 my-2">

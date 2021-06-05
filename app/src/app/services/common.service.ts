@@ -46,4 +46,12 @@ export class CommonService {
     return code;
   }
 
+  generateOtp() {
+    var otp = "";
+    var possible2 = "0123456789";
+    for (var i = 0; i < 6; i++)
+      otp += possible2.charAt(Math.floor(Math.random() * possible2.length));
+    return otp;
+  }
+
 }

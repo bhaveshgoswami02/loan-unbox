@@ -10,6 +10,10 @@
     }
 }
 
+b,span {
+    color: #B6B6B6;
+}
+
 .social-links {
     color: #B6B6B6;
     margin-right:  16px;
@@ -25,4 +29,10 @@
     color: #fff!important;
     font-weight: 600;
     font-size: var(--secondary-font);
+}
+
+.link {
+    color: var(--primary)!important;
+    text-decoration: underline!important;
+    cursor: pointer!important;
 }

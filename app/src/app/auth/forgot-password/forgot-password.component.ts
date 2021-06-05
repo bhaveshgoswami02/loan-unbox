@@ -38,7 +38,7 @@ export class ForgotPasswordComponent implements OnInit {
       if (res.exists) {
         this.authService.sendOtp(this.formData.value.mobile_no).subscribe((res: any) => {
           if (res.Status == "Success") {
-            this.common.showToast("error", "OTP sent successfull on your mobile number!", "")
+            this.common.showToast("success", "OTP sent successfull on your mobile number!", "")
             this.session_id = res.Details
             this.isOtpSent = true
             this.common.stopLoader()

@@ -2,21 +2,18 @@
 <div class="container" style="min-height: 60vh;">
     <div class="row">
         <div class="col-md-6 mx-auto border-bottom text-center pb-3">
-            <div class="d-none d-md-block d-lg-block">
-                <img [src]="auth.getUserDetails()?.imgUrl" *ngIf="auth.getUserDetails()?.imgUrl" class="rounded-circle" width="20%" alt="">
-                <img src="../../../assets/images/user.png" *ngIf="!auth.getUserDetails()?.imgUrl" class="rounded-circle" width="20%" alt="">
-            </div>
-            <div class="d-block d-md-none d-lg-none">
-                <img [src]="auth.getUserDetails()?.imgUrl" *ngIf="auth.getUserDetails()?.imgUrl" class="rounded-circle" width="30%" alt="">
-                <img src="../../../assets/images/user.png" *ngIf="!auth.getUserDetails()?.imgUrl" class="rounded-circle" width="30%" alt="">
-            </div>
-            <h4 class="mt-1">{{auth.getUserDetails().name}}</h4>
+            <img [src]="auth.getUserDetails()?.imgUrl" *ngIf="auth.getUserDetails()?.imgUrl" class="rounded-circle"
+                width="120px" height="120px" alt="">
+            <img src="../../../assets/images/user.png" *ngIf="!auth.getUserDetails()?.imgUrl" class="rounded-circle"
+                width="120px" height="120px" alt="">
+            <h4 class="mt-1">{{auth.getUserDetails().firstName}} {{auth.getUserDetails().middleName}} {{auth.getUserDetails().lastName}}</h4>
             <a class="link" routerLink="/edit-profile"><i class="pi pi-user-edit" style="font-size: 20px;"></i> Edit
                 Profile</a>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6 border-bottom mx-auto py-3 cursor-pointer" routerLink="/auth/reset-password/{{auth.getUid()}}">
+        <div class="col-md-6 border-bottom mx-auto py-3 cursor-pointer"
+            routerLink="/auth/reset-password/{{auth.getUid()}}">
             <span>Change Password</span>
             <i class="pi pi-chevron-right float-right"></i>
         </div>

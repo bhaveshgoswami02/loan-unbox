@@ -19,6 +19,14 @@ export class AppComponent {
     this.location.subscribe((ev:PopStateEvent) => {
         this.lastPoppedUrl = ev.url;
     });
+    if(!localStorage.getItem("uid")){
+        console.log(window.location.pathname)
+        if(window.location.pathname=="/"){
+            setTimeout(() => {
+                this.router.navigateByUrl("/intro")
+            }, 200);
+        }
+    }
     this.router.events.subscribe((ev:any) => {
         if (ev instanceof NavigationStart) {
             if (ev.url != this.lastPoppedUrl)

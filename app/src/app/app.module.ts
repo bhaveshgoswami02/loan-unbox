@@ -35,6 +35,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
+import { IntroComponent } from './intro/intro.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { AngularFireMessagingModule } from '@angular/fire/messaging';
     VerifyOtpComponent,
     EmptyViewComponent,
     LeadDetailsComponent,
-    LoaderComponent
+    LoaderComponent,
+    IntroComponent
   ],
   imports: [
     BrowserModule,

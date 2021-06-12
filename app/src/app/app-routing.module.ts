@@ -17,6 +17,7 @@ import { LeadDetailsComponent } from './components/lead-details/lead-details.com
 import { LeadComponent } from './components/lead/lead.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { IntroComponent } from './intro/intro.component';
 import { AuthGuardService } from './services/auth-guard.service';
 
 const routes: Routes = [
@@ -38,7 +39,8 @@ const routes: Routes = [
     {path:'forgot-password',component:ForgotPasswordComponent},
     {path:'password',component:PasswordComponent},
     {path:'verify-otp',component:VerifyOtpComponent},
-  ]}
+  ]},
+  {path:'intro',component:IntroComponent},
 ];
 
 @NgModule({

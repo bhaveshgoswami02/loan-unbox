@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NotificationPermissionService } from '../notification-permission.service';
+import { NotificationService } from '../notification.service';
 
 @Component({
   selector: 'app-components',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ComponentsComponent implements OnInit {
 
-  constructor() { }
+  constructor(public notificationPermission:NotificationPermissionService) { }
 
   ngOnInit(): void {
   }

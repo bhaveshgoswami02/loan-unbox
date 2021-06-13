@@ -19,6 +19,7 @@ export class NotificationsService {
     data.timestamp = firebase.firestore.Timestamp.now()
     return this.db.collection(this.collection).add(data).then(res => {
       this.router.navigateByUrl("/" + this.collection)
+      this.sendpush(data)
       this.common.showToast("success", "", "Notification sent Successful!")
     }).catch(err => {
       this.common.showToast("error", "", err)
@@ -27,8 +28,10 @@ export class NotificationsService {
     })
   }
   
-  sendNotificationToSingleUser(data:any) {
+  async sendNotificationToSingleUser(data:any) {
     this.common.showLoader()
+    console.log(data.uid)
+    this.sendpush(data)
     data.timestamp = firebase.firestore.Timestamp.now()
     return this.db.collection("single-notifications").add(data).then(res => {
       this.router.navigateByUrl("/" + this.collection)
@@ -131,6 +134,28 @@ export class NotificationsService {
       this.common.showToast("error", "", "Deleted!")
       this.common.stopLoader()
     })
+  }
+
+
+  sendpush(data:any){
+   if(data.uid){
+    this.db.collection("users").doc(data.uid).valueChanges().subscribe((res:any)=>{
+      res.pushTokens.forEach((element:any) => {
+        this.common.sendNotification(element.token,{title:data.title,body:data.message})
+      });
+    })
+   }else{
+    this.db.collection("users").valueChanges().subscribe((res:any)=>{
+     res.forEach((user:any) => {
+      if(user.pushTokens){
+        user.pushTokens.forEach((element:any) => {
+          console.log("sending to ",element.token)
+          this.common.sendNotification(element.token,{title:data.title,body:data.message})
+        });
+      }
+     });
+    })
+   }
   }
 
 }

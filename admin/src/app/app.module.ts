@@ -21,6 +21,7 @@ import { AllNotificationsComponent } from './components/notifications/all-notifi
 import { SingleNotificationComponent } from './components/notifications/single-notification/single-notification.component';
 import { UsersComponent } from './components/users/users.component';
 import { LeadsComponent } from './components/leads/leads.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { LeadsComponent } from './components/leads/leads.component';
     AngularFireAuthModule,
     BrowserAnimationsModule, // required animations module
     NgxUiLoaderModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

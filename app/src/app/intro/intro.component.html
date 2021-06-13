@@ -1,1 +1,23 @@
-<p>intro works!</p>
+    <swiper
+    [slidesPerView]="1"
+    [spaceBetween]="0"
+    (swiper)="onSwiper($event)"
+    (slideChange)="onSlideChange()"
+    [pagination]="{ clickable: true }"
+  >
+    
+    <ng-template swiperSlide>
+        <div class="background" [ngStyle]="{'background-image': 'url(' + 'assets/images/intro1.png' + ')'}" ></div>
+    </ng-template>
+    <ng-template swiperSlide>
+        <div class="background" [ngStyle]="{'background-image': 'url(' + 'assets/images/intro2.png' + ')'}" ></div>
+    </ng-template>
+    <ng-template swiperSlide>
+        <div class="background" [ngStyle]="{'background-image': 'url(' + 'assets/images/intro3.png' + ')'}" ></div>
+    </ng-template>
+  </swiper>
+  <div class="px-2 fixed-bottom">
+    <button (click)="next()" class="btn btn-primary my-4 w-100 mb-5">Next</button>
+  </div>
+
+  <div routerLink="/auth" style="position: absolute;top:1rem;right:1rem;z-index: 1000;font-size: 22px;color: #fd786b;">Skip</div>

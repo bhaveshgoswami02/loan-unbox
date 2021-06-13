@@ -36,6 +36,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
 import { IntroComponent } from './intro/intro.component';
+import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,7 @@ import { IntroComponent } from './intro/intro.component';
     EmptyViewComponent,
     LeadDetailsComponent,
     LoaderComponent,
-    IntroComponent
+    IntroComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,6 +74,7 @@ import { IntroComponent } from './intro/intro.component';
     ReactiveFormsModule,
     ToastrModule.forRoot(), // ToastrModule added
     RippleModule,
+    SwiperModule,
     BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,

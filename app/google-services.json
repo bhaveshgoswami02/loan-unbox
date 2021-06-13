@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "388629100525",
+    "project_id": "loan-unbox0223",
+    "storage_bucket": "loan-unbox0223.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:388629100525:android:b310dedfac8b8803ba99e4",
+        "android_client_info": {
+          "package_name": "com.loanunbox.partner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "388629100525-qc9b2s2q5jvct6tlauvj9nhfna14d12f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClsj38N5xOEJLu95Fmqu7Eyjj2m0o9fqo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "388629100525-qc9b2s2q5jvct6tlauvj9nhfna14d12f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

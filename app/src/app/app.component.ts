@@ -3,6 +3,7 @@ import { AuthService } from './services/auth.service';
 import { CommonService } from './services/common.service';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { Location, PopStateEvent } from "@angular/common";
+import { App } from '@capacitor/app';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,9 @@ export class AppComponent {
   constructor(public authService: AuthService, public common: CommonService,private router: Router, private location: Location) { }
 
   ngOnInit() {
+    App.addListener('backButton', () => {
+        window.history.back();
+      });
     this.location.subscribe((ev:PopStateEvent) => {
         this.lastPoppedUrl = ev.url;
     });

@@ -1,21 +1,23 @@
-    <swiper
-    [slidesPerView]="1"
-    [spaceBetween]="0"
-    (swiper)="onSwiper($event)"
-    (slideChange)="onSlideChange()"
-    [pagination]="{ clickable: true }"
-  >
-    
-    <ng-template swiperSlide>
-        <div class="background" [ngStyle]="{'background-image': 'url(' + 'assets/images/intro1.png' + ')'}" ></div>
-    </ng-template>
-    <ng-template swiperSlide>
-        <div class="background" [ngStyle]="{'background-image': 'url(' + 'assets/images/intro2.png' + ')'}" ></div>
-    </ng-template>
-    <ng-template swiperSlide>
-        <div class="background" [ngStyle]="{'background-image': 'url(' + 'assets/images/intro3.png' + ')'}" ></div>
-    </ng-template>
-  </swiper>
+    <div style="max-width: 500px;">
+        <swiper
+        [slidesPerView]="1"
+        [spaceBetween]="0"
+        (swiper)="onSwiper($event)"
+        (slideChange)="onSlideChange()"
+        [pagination]="{ clickable: true }"
+      >
+        
+        <ng-template swiperSlide>
+            <div class="background" [ngStyle]="{'background-image': 'url(' + 'assets/images/intro1.png' + ')'}" ></div>
+        </ng-template>
+        <ng-template swiperSlide>
+            <div class="background" [ngStyle]="{'background-image': 'url(' + 'assets/images/intro2.png' + ')'}" ></div>
+        </ng-template>
+        <ng-template swiperSlide>
+            <div class="background" [ngStyle]="{'background-image': 'url(' + 'assets/images/intro3.png' + ')'}" ></div>
+        </ng-template>
+      </swiper>
+    </div>
   <div class="px-2 fixed-bottom">
     <button (click)="next()" class="btn btn-primary my-4 w-100 mb-5">Next</button>
   </div>

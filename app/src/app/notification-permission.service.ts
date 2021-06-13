@@ -34,21 +34,31 @@ export class NotificationPermissionService {
       PushNotifications.requestPermissions().then(result => {
         if (result.receive === 'granted') {
           console.log('permission')
-          PushNotifications.register();
+          PushNotifications.register().then(res=>{
+            console.log("ergister")
+          }).catch(err=>{
+            console.log("register ",err)
+          })
         } else {
           // Show some error
           console.log("error")
         }
-      });
+      }).catch(err=>{
+        console.log("error",err)
+      })
       PushNotifications.addListener('registration', (token: Token) => {
-          console.log('Push registration success, token: ' + token.value);
+          console.log('Push registration success, token: ' + token);
           this.token = token.value
           // this.notification.add('publicToken', {
           //   token:this.token
           // }, this.token)
           this.updateToken()
         },
-      );
+      ).then(res=>{
+        console.log(res)
+      }).catch(err=>{
+        console.log("error",err)
+      })
       PushNotifications.addListener(
         'pushNotificationReceived',
         (notification: PushNotificationSchema) => {
@@ -61,7 +71,7 @@ export class NotificationPermissionService {
           //alert('Push action performed: ' + JSON.stringify(notification.notification.data));
           setTimeout(() => {
             if (notification.notification.data.route) {
-              this.router.navigateByUrl(notification.notification.data.route)
+              this.router.navigateByUrl('/notifications')
             }
           }, 500);
         },

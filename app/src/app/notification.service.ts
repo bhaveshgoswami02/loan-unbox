@@ -102,7 +102,7 @@ export class NotificationService {
   sendNotification(token:any, notification:any){
     const httpOptions = {
        headers : new HttpHeaders({
-        'Authorization': 'key=AAAA7vOVvz8:APA91bEPNtxWCvKtvTF38tgl93JmYVQfkYgIXqowmNQyX90aWo8PiE-oRS8mnDVzkFH-K9SW9VM70pfBWFGZPW2kxJUCClo7X1FYGBkg6FQWe3m6Bt4QIrPgibowgGj7KFhjM4LD4wiG',
+        'Authorization': 'key=AAAAWnwZd-0:APA91bFXoHsnl9zIXnvvHEfsSoyxXgpeiyUBq5okoR4ojYFZ1QB6VDYE7E7SdnRTyfxvMk4mBoeiSApJVBE5Xux0T9c8biQh7CXN0ZRUFHgqW0P6c-Ekeg4rZnnMFDXsbEUlDgtsNiiC',
         'Content-Type':'application/json'
       })
     };

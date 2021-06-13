@@ -23,6 +23,16 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "optimization": {
+              "scripts": true,
+              "fonts": {
+                "inline": true
+              },
+              "styles": {
+                "minify": true,
+                "inlineCritical": false
+              }
+            },
             "outputPath": "dist/loan-unbox",
             "index": "src/index.html",
             "main": "src/main.ts",

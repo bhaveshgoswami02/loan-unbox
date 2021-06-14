@@ -13,12 +13,23 @@ import { App } from '@capacitor/app';
 export class AppComponent {
   private lastPoppedUrl: any;
   private yScrollStack: any[] = [];
+  backbuttonPressedOnce=false
 
   constructor(public authService: AuthService, public common: CommonService,private router: Router, private location: Location) { }
 
   ngOnInit() {
     App.addListener('backButton', () => {
-        window.history.back();
+        if(window.location.pathname!="/"){
+            window.history.back();
+        }else{
+            if(this.backbuttonPressedOnce){
+                App.exitApp()
+            }
+            this.backbuttonPressedOnce=true
+            setTimeout(() => {
+                this.backbuttonPressedOnce=false
+            }, 1500);
+        }
       });
     this.location.subscribe((ev:PopStateEvent) => {
         this.lastPoppedUrl = ev.url;

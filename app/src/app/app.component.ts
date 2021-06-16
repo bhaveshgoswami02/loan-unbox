@@ -38,7 +38,7 @@ export class AppComponent {
         console.log(window.location.pathname)
         if(window.location.pathname=="/"){
             setTimeout(() => {
-                this.router.navigateByUrl("/intro")
+                //this.router.navigateByUrl("/intro")
             }, 200);
         }
     }

@@ -42,7 +42,7 @@ export class LeadService {
     }
     else
     {
-      return this.db.collection(this.collection, ref => ref.where("address_details.state","==","Telangana").orderBy("timestamp", "desc")).get().pipe(
+      return this.db.collection(this.collection, ref => ref.where("address_details.state","==",state).orderBy("timestamp", "desc")).get().pipe(
         map(actions => actions.docs.map(a => {
           const data = a.data() as any;
           const id = a.id;

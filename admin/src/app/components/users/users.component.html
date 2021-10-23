@@ -5,7 +5,7 @@
 
   <div
     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center rounded mb-3 border-bottom bg-white p-3">
-    <ng-container>
+    <!-- <ng-container>
       <div class="table-responsive">
         <table class="table">
           <thead class="thead-dark">
@@ -34,7 +34,66 @@
           </tbody>
         </table>
       </div>
-    </ng-container>
+    </ng-container> -->
+    <div class="row w-100">
+      <div class="col-md-12">
+        <p-table #dt [resizableColumns]="true" styleClass="p-datatable-responsive-demo p-datatable-gridlines"
+          [columns]="cols" [value]="allData" dataKey="id" [rowHover]="true" [rows]="10" [showCurrentPageReport]="true"
+          [rowsPerPageOptions]="[10,25,50]" [loading]="loading" [paginator]="true"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [filterDelay]="0"
+          [globalFilterFields]="['firstName','connector_code','mobile_no','gender']">
+          <ng-template pTemplate="caption">
+            <div class="table-header">
+              <div class="row">
+                <div class="col-md-8 col-lg-8 col-12 my-2">
+                  <h5>List of Categories</h5>
+                </div>
+                <div class="col-md-4 col-lg-4 col-12 my-2" style="text-align: right;">
+                  <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-search"></i></span>
+                    <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+                      placeholder="Global Search" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template pTemplate="header" let-columns>
+            <tr>
+              <th pSortableColumn="{{col.field}}" pResizableColumn *ngFor="let col of columns">
+                {{col.header}} <p-sortIcon style="float: right;" field="{{col.field}}"></p-sortIcon>
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr class="p-selectable-row">
+              <td *ngFor="let col of columns">
+                <span class="p-column-title">{{col.header}}</span>
+
+                <ng-container *ngIf="col.field != 'timestamp'">
+                  <span>{{rowData[col.field]}}</span>
+                </ng-container>
+
+                <ng-container *ngIf="col.field == 'timestamp'">
+                  <span>{{rowData[col.field].toDate() | date : 'mediumDate'}}</span>
+                </ng-container>
+
+                <ng-container *ngIf="col.field == 'notification'">
+                  <button class="btn btn-primary" (click)="sendNotification(rowData['id'])">
+                    <i class="fa fa-paper-plane"></i>
+                  </button>
+                </ng-container>
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="6">No Data Found.</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
   </div>
   <br><br>
 </main>

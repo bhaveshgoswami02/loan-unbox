@@ -11,8 +11,48 @@ export class EditProfileComponent implements OnInit {
   formData: FormGroup;
   imageSrc: any = "../../../assets/images/user.png";
   imageFile: any;
-  connector_code:any
+  connector_code: any
+  allStates: any = []
+
   constructor(private fb: FormBuilder, public auth: AuthService) {
+    this.allStates = [
+      { name: "Andaman and Nicobar Islands" },
+      { name: "Andhra Pradesh" },
+      { name: "Arunachal Pradesh" },
+      { name: "Assam" },
+      { name: "Bihar" },
+      { name: "Chandigarh" },
+      { name: "Chhattisgarh" },
+      { name: "Dadra and Nagar Haveli" },
+      { name: "Daman and Diu" },
+      { name: "Delhi" },
+      { name: "Goa" },
+      { name: "Gujarat" },
+      { name: "Haryana" },
+      { name: "Himachal Pradesh" },
+      { name: "Jammu and Kashmir" },
+      { name: "Jharkhand" },
+      { name: "Karnataka" },
+      { name: "Kerala" },
+      { name: "Lakshadweep" },
+      { name: "Madhya Pradesh" },
+      { name: "Maharashtra" },
+      { name: "Manipur" },
+      { name: "Meghalaya" },
+      { name: "Mizoram" },
+      { name: "Nagaland" },
+      { name: "Odisha" },
+      { name: "Puducherry" },
+      { name: "Punjab" },
+      { name: "Rajasthan" },
+      { name: "Sikkim" },
+      { name: "Tamil Nadu" },
+      { name: "Telangana" },
+      { name: "Tripura" },
+      { name: "Uttar Pradesh" },
+      { name: "Uttarakhand" },
+      { name: "West Bengal" }
+    ]
     this.formData = this.fb.group({
       'firstName': ['', [Validators.required]],
       'lastName': ['', [Validators.required]],
@@ -54,7 +94,7 @@ export class EditProfileComponent implements OnInit {
           'state': [res?.address_details?.state],
         })
       })
-      if(res?.imgUrl) {
+      if (res?.imgUrl) {
         this.imageSrc = res?.imgUrl
       }
       this.connector_code = res?.connector_code

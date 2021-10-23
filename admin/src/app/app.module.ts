@@ -22,6 +22,8 @@ import { SingleNotificationComponent } from './components/notifications/single-n
 import { UsersComponent } from './components/users/users.component';
 import { LeadsComponent } from './components/leads/leads.component';
 import { HttpClientModule } from '@angular/common/http';
+import { TableModule } from 'primeng/table';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule, // required animations module
     NgxUiLoaderModule,
     ToastrModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    TableModule,
+    DropdownModule
   ],
   providers: [],
   bootstrap: [AppComponent]

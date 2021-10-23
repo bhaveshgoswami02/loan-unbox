@@ -92,8 +92,12 @@
                                         placeholder="City">
                                 </div>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control border mb-2" formControlName="state"
-                                        placeholder="State">
+                                    <!-- <input type="text" class="form-control border mb-2" formControlName="state"
+                                        placeholder="State"> -->
+                                        <select formControlName="state" class="form-control border mb-2">
+                                            <option value="" disabled>--Select State--</option>
+                                            <option *ngFor="let state of allStates" [value]="state?.name">{{state?.name}}</option>
+                                        </select>
                                 </div>
                             </div>
                         </div>

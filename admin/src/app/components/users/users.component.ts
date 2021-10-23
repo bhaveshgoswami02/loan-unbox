@@ -9,6 +9,15 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UsersComponent implements OnInit {
   allData: any = []
+  cols = [
+    { field: 'firstName', header: 'Name' },
+    { field: 'connector_code', header: 'Partner Code' },
+    { field: 'mobile_no', header: 'Mobile' },
+    { field: 'gender', header: 'Gender' },
+    { field: 'timestamp', header: 'Date' },
+    { field: 'notification', header: 'Notification' },
+  ];
+  loading:boolean = true;
 
   constructor(public user: UserService, public router: Router) { }
 
@@ -23,6 +32,7 @@ export class UsersComponent implements OnInit {
   getData() {
     this.user.getAll().subscribe(res => {
       this.allData = res
+      this.loading = false
       console.log("all users", this.allData)
     })
   }

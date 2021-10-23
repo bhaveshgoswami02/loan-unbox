@@ -1,11 +1,13 @@
 <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 bg-color" style="background-color: #F7F7F9;min-height: 100vh;">
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h4>All Leads</h4>
+    <p-dropdown [options]="allStates" optionLabel="name" [filter]="true"  filterBy="name" [(ngModel)]="state" (onChange)="onStateChange()" placeholder="Select a state" [showClear]="true"></p-dropdown>
   </div>
 
   <div
-    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center rounded mb-3 border-bottom bg-white p-3">
-    <ng-container>
+    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center rounded mb-3 border-bottom bg-white p-3 w-100"
+    style="overflow-x: scroll;">
+    <!-- <ng-container>
       <div class="table-responsive" style="overflow-x:scroll">
         <table class="table">
           <thead class="thead-dark">
@@ -56,7 +58,94 @@
           </tbody>
         </table>
       </div>
-    </ng-container>
+    </ng-container> -->
+
+    <div class="row w-100">
+      <div class="col-md-12">
+        <p-table #dt [resizableColumns]="true" styleClass="p-datatable-responsive-demo p-datatable-gridlines"
+          [columns]="cols" [value]="allData" dataKey="id" [rowHover]="true" [rows]="10" [showCurrentPageReport]="true"
+          [rowsPerPageOptions]="[10,25,50]" [loading]="loading" [paginator]="true"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [filterDelay]="0"
+          [globalFilterFields]="['connector_code','email','mobile_no','amount','description','status']">
+          <ng-template pTemplate="caption">
+            <div class="table-header">
+              <div class="row">
+                <div class="col-md-8 col-lg-8 col-12 my-2">
+                  <h5>All Leads</h5>
+                </div>
+                <div class="col-md-4 col-lg-4 col-12 my-2" style="text-align: right;">
+                  <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-search"></i></span>
+                    <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+                      placeholder="Global Search" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template pTemplate="header" let-columns>
+            <tr>
+              <th pSortableColumn="{{col.field}}" pResizableColumn *ngFor="let col of columns">
+                {{col.header}} <p-sortIcon style="float: right;" field="{{col.field}}"></p-sortIcon>
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr class="p-selectable-row">
+              <td *ngFor="let col of columns">
+                <span class="p-column-title">{{col.header}}</span>
+
+                <ng-container
+                  *ngIf="col.field != 'connectorDetails' && col.field != 'prefix' && col.field != 'address_details' && col.field != 'timestamp' && col.field != 'status'">
+                  <span>{{rowData[col.field]}}</span>
+                </ng-container>
+
+                <ng-container *ngIf="col.field == 'connectorDetails'">
+                  <span>{{rowData[col.field]?.firstName}}</span>
+                  &nbsp;<span>{{rowData[col.field]?.middleName}}</span>&nbsp;
+                  <span>{{rowData[col.field]?.lastName}}</span>
+                </ng-container>
+
+                <ng-container *ngIf="col.field == 'prefix'">
+                  <span>{{rowData['firstName']}}</span>
+                  &nbsp;<span>{{rowData['middleName']}}</span>&nbsp;
+                  <span>{{rowData['lastName']}}</span>
+                </ng-container>
+
+                <ng-container *ngIf="col.field == 'address_details'">
+                  <p class="mb-0" *ngIf="rowData['address_details']?.flat_street">
+                    {{rowData['address_details']?.flat_street}},</p>
+                  <p class="mb-0" *ngIf="rowData['address_details']?.address">{{rowData['address_details']?.address}},
+                  </p>
+                  <p class="mb-0" *ngIf="rowData['address_details']?.city">{{rowData['address_details']?.city}},</p>
+                  <p class="mb-0" *ngIf="rowData['address_details']?.pincode">{{rowData['address_details']?.pincode}}
+                  </p>
+                  <p class="mb-0" *ngIf="rowData['address_details']?.state">{{rowData['address_details']?.state}}</p>
+                </ng-container>
+
+                <ng-container *ngIf="col.field == 'timestamp'">
+                  <span>{{rowData['timestamp'].toDate() | date : 'mediumDate'}}</span>
+                </ng-container>
+
+                <ng-container *ngIf="col.field == 'status'">
+                  <select name="status" [ngModel]="rowData['status']" (change)="onStatusChange(rowData['id'],$event)">
+                    <option value="pending">Pending</option>
+                    <option value="progress">Progress</option>
+                    <option value="approved">Approved</option>
+                    <option value="rejected">Rejected</option>
+                  </select>
+                </ng-container>
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="11">No Data Found.</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
   </div>
   <br><br>
 </main>

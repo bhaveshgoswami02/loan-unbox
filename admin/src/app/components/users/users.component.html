@@ -1,6 +1,7 @@
 <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 bg-color" style="background-color: #F7F7F9;min-height: 100vh;">
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h4>All Users</h4>
+    <p-dropdown [options]="allStates" optionLabel="name" [filter]="true"  filterBy="name" [(ngModel)]="state" (onChange)="onStateChange()" placeholder="Select a state" [showClear]="true"></p-dropdown>
   </div>
 
   <div
@@ -41,7 +42,7 @@
           [columns]="cols" [value]="allData" dataKey="id" [rowHover]="true" [rows]="10" [showCurrentPageReport]="true"
           [rowsPerPageOptions]="[10,25,50]" [loading]="loading" [paginator]="true"
           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [filterDelay]="0"
-          [globalFilterFields]="['firstName','connector_code','mobile_no','gender']">
+          [globalFilterFields]="['firstName','connector_code','mobile_no','gender','address_details.state']">
           <ng-template pTemplate="caption">
             <div class="table-header">
               <div class="row">
@@ -70,8 +71,19 @@
               <td *ngFor="let col of columns">
                 <span class="p-column-title">{{col.header}}</span>
 
-                <ng-container *ngIf="col.field != 'timestamp'">
+                <ng-container *ngIf="col.field != 'timestamp' && col.field != 'address_details'">
                   <span>{{rowData[col.field]}}</span>
+                </ng-container>
+
+                <ng-container *ngIf="col.field == 'address_details'">
+                  <p class="mb-0" *ngIf="rowData['address_details']?.flat_street">
+                    {{rowData['address_details']?.flat_street}},</p>
+                  <p class="mb-0" *ngIf="rowData['address_details']?.address">{{rowData['address_details']?.address}},
+                  </p>
+                  <p class="mb-0" *ngIf="rowData['address_details']?.city">{{rowData['address_details']?.city}},</p>
+                  <p class="mb-0" *ngIf="rowData['address_details']?.pincode">{{rowData['address_details']?.pincode}}
+                  </p>
+                  <p class="mb-0" *ngIf="rowData['address_details']?.state">{{rowData['address_details']?.state}}</p>
                 </ng-container>
 
                 <ng-container *ngIf="col.field == 'timestamp'">

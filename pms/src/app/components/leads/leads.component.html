@@ -1,8 +1,7 @@
 <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 bg-color" style="background-color: #F7F7F9;min-height: 100vh;">
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h4>All Leads</h4>
-    <p-dropdown [options]="allStates" optionLabel="name" [filter]="true" filterBy="name" [(ngModel)]="state"
-      (onChange)="onStateChange()" placeholder="Select a state" [showClear]="true"></p-dropdown>
+    <!-- <p-dropdown [options]="allStates" optionLabel="name" [filter]="true"  filterBy="name" [(ngModel)]="state" (onChange)="onStateChange()" placeholder="Select a state" [showClear]="true"></p-dropdown> -->
   </div>
 
   <div
@@ -45,23 +44,21 @@
                 <span class="p-column-title">{{col.header}}</span>
 
                 <ng-container
-                  *ngIf="col.field != 'connectorDetails' && col.field != 'prefix' && col.field != 'info' && col.field != 'address_details' && col.field != 'timestamp' && col.field != 'status' && col.field != 'comment'">
+                  *ngIf="col.field != 'connectorDetails' && col.field != 'prefix'  && col.field != 'comment' && col.field != 'address_details' && col.field != 'timestamp' && col.field != 'status'">
                   <span>{{rowData[col.field]}}</span>
                 </ng-container>
 
                 <ng-container *ngIf="col.field == 'connectorDetails'">
-                  <span *ngIf="rowData[col.field]?.firstName">{{rowData[col.field]?.firstName}}</span>
-                  &nbsp;<span *ngIf="rowData[col.field]?.middleName">{{rowData[col.field]?.middleName}}</span>&nbsp;
-                  <span *ngIf="rowData[col.field]?.lastName">{{rowData[col.field]?.lastName}}</span>
+                  <span>{{rowData[col.field]?.firstName}}</span>
+                  &nbsp;<span>{{rowData[col.field]?.middleName}}</span>&nbsp;
+                  <span>{{rowData[col.field]?.lastName}}</span>
                 </ng-container>
 
                 <ng-container *ngIf="col.field == 'prefix'">
-                  <span *ngIf="rowData['firstName']">{{rowData['firstName']}}</span>
-                  &nbsp;<span *ngIf="rowData['middleName']">{{rowData['middleName']}}</span>&nbsp;
-                  <span *ngIf="rowData['lastName']">{{rowData['lastName']}}</span>
+                  <span>{{rowData['firstName']}}</span>
+                  &nbsp;<span>{{rowData['middleName']}}</span>&nbsp;
+                  <span>{{rowData['lastName']}}</span>
                 </ng-container>
-
-
 
                 <ng-container *ngIf="col.field == 'timestamp'">
                   <span>{{rowData['timestamp'].toDate() | date : 'mediumDate'}}</span>
@@ -76,21 +73,21 @@
                   </select>
                 </ng-container>
 
+                <ng-container *ngIf="col.field == 'comment'">
+                  <div class="d-flex align-items-center">
+
+                    <textarea #inp [(ngModel)]="rowData['comment']"  id="" cols="15" rows="2"></textarea>
+
+                    <button class="btn btn-success mx-1" (click)="saveComment(rowData['id'],inp.value)"><i
+                    class="fa fa-save"></i></button>
+                  </div>
+
+                </ng-container>
+
                 <ng-container *ngIf="col.field == 'info'">
                   <button class="btn btn-primary" (click)="viewInfo(rowData)">
                     <i class="fa fa-info"></i>
                   </button>
-                </ng-container>
-                <ng-container *ngIf="col.field == 'comment'">
-                  <div class="d-flex align-items-center">
-                    <textarea #inp [(ngModel)]="rowData['comment']" id="" cols="15" rows="3"></textarea>
-
-                    <button class="btn btn-success mx-1" (click)="saveComment(rowData['id'],inp.value)"><i
-                        class="fa fa-save"></i></button>
-
-                  </div>
-
-
                 </ng-container>
 
               </td>
@@ -107,6 +104,7 @@
   </div>
   <br><br>
 </main>
+
 
 
 
@@ -140,7 +138,7 @@
     </ng-container>
 
     <ng-container *ngIf="itm.field == 'comment'">
-      <div class="d-flex align-items-center">
+      <div class="d-flex align-items-center mt-2">
         <textarea #inp [(ngModel)]="viewData['comment']" id="" cols="50" rows="5"></textarea>
         <button class="btn btn-success mx-2" (click)="saveComment(viewData['id'],inp.value)"><i
             class="fa fa-save"></i></button>

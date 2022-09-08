@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~ngx-toastr/toastr';
+
+.cursor-pointer {
+    cursor: pointer!important;
+}
+
+.p-datatable .p-datatable-tbody>tr {
+    background: #ffffff;
+    color: #495057;
+    transition: box-shadow 0.2s;
+    outline-color: #a6d5fa;
+    border: 1px solid #495057;
+}

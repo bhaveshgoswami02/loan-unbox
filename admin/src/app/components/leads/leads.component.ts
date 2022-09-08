@@ -13,18 +13,35 @@ export class LeadsComponent implements OnInit {
     { field: 'connector_code', header: 'Partner Code' },
     { field: 'connectorDetails', header: 'Partner Name' },
     { field: 'prefix', header: 'Name' },
+    { field: 'mobile_no', header: 'Mobile' },
+    { field: 'amount', header: 'Amount' },
+    { field: 'loan_required', header: 'Loan Required' },
+    { field: 'timestamp', header: 'Date' },
+    { field: 'status', header: 'Status' },
+    { field: 'comment', header: 'Comment' },
+    { field: 'info', header: 'Info' },
+
+  ];
+
+  informations = [
+    { field: 'connector_code', header: 'Partner Code' },
+    { field: 'connectorDetails', header: 'Partner Name' },
+    { field: 'prefix', header: 'Name' },
     { field: 'email', header: 'Email' },
     { field: 'mobile_no', header: 'Mobile' },
     { field: 'amount', header: 'Amount' },
     { field: 'loan_required', header: 'Loan Required' },
     { field: 'description', header: 'Description' },
     { field: 'address_details', header: 'Address' },
-    { field: 'timestamp', header: 'Date' },
-    { field: 'status', header: 'Status' },
+    { field: 'comment', header: 'Comment' }
   ];
+
+
   loading: boolean = true
   allStates: any = []
   state: any = {name:"All"}
+  displayBasic:any=false
+  viewData:any=null
   constructor(public service: LeadService, public router: Router) {
   }
 
@@ -72,7 +89,7 @@ export class LeadsComponent implements OnInit {
   }
 
   getData() {
-    this.service.getAll(this.state.name).subscribe(res => {
+    this.service.getAll(this.state.name).subscribe((res:any) => {
       this.allData = res
       this.loading = false
       console.log("all leads", this.allData)
@@ -82,7 +99,9 @@ export class LeadsComponent implements OnInit {
   onStatusChange(id: any, event: any) {
     console.log("status", event.target.value)
     let data = { status: event.target.value }
-    this.service.update(id, data)
+    this.service.update(id, data).then(res=>{
+
+    })
   }
 
   delete(id: any) {
@@ -92,4 +111,21 @@ export class LeadsComponent implements OnInit {
   onStateChange() {
     this.getData()
   }
+
+  viewInfo (data:any) {
+    this.viewData=data
+    this.displayBasic=true
+
+  }
+
+
+  saveComment(userid:any,comments:any) {
+    let obj= {comment:comments}
+    console.log(obj)
+    this.service.update(userid,obj).then(res=>{
+      console.log(res)
+    })
+  }
+
+
 }

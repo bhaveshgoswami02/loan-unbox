@@ -14,7 +14,7 @@ export class UserService {
 
   getAll(state:string) {
     if(state == 'All') {
-      return this.db.collection(this.collection,ref=>ref.orderBy("timestamp","desc")).get().pipe(
+      return this.db.collection(this.collection,ref=>ref.orderBy("timestamp","desc").limitToLast(10)).get().pipe(
         map(actions => actions.docs.map(a => {
           const data = a.data() as any;
           const id = a.id;
@@ -33,5 +33,22 @@ export class UserService {
       )
     }
   }
+
+
+
+  update(id: string, data: any) {
+    this.common.showLoader()
+    return this.db.collection(this.collection).doc(id).update(data).then(res => {
+      return res
+    }).catch(err => {
+      this.common.showToast("error", "Error", err)
+      return err;
+    }).finally(() => {
+      this.router.navigateByUrl("/" + this.collection)
+      this.common.showToast("success", "Successful", "Updated!")
+      this.common.stopLoader()
+    })
+  }
+
 
 }

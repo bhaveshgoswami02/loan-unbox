@@ -6,36 +6,7 @@
 
   <div
     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center rounded mb-3 border-bottom bg-white p-3">
-    <!-- <ng-container>
-      <div class="table-responsive">
-        <table class="table">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Name</th>
-              <th scope="col">Partner Code</th>
-              <th scope="col">Mobile</th>
-              <th scope="col">Gender</th>
-              <th scope="col">Date</th>
-              <th scope="col">Notification</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let data of allData;let i = index">
-              <td>{{i+1}}</td>
-              <td>{{data?.firstName}} {{data?.middleName}} {{data?.lastName}}</td>
-              <td>{{data?.connector_code}}</td>
-              <td>{{data?.mobile_no}}</td>
-              <td>{{data?.gender}}</td>
-              <td>{{data?.timestamp.toDate() | date : 'mediumDate'}}</td>
-              <td><button class="btn btn-primary" (click)="sendNotification(data.id)"><i
-                    class="fa fa-paper-plane"></i></button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </ng-container> -->
+
     <div class="row w-100">
       <div class="col-md-12">
         <p-table #dt [resizableColumns]="true" styleClass="p-datatable-responsive-demo p-datatable-gridlines"
@@ -71,37 +42,29 @@
               <td *ngFor="let col of columns">
                 <span class="p-column-title">{{col.header}}</span>
 
-                <ng-container *ngIf="col.field != 'timestamp' && col.field != 'address_details' && col.field != 'comment'  && col.field != 'assignedPmsId' && col.field != 'info'">
+                <ng-container *ngIf="col.field != 'timestamp' && col.field != 'address_details'  && col.field != 'assignedPmsId' && col.field != 'action'  && col.field != 'comment'">
                   <span>{{rowData[col.field]}}</span>
                 </ng-container>
 
                 <ng-container *ngIf="col.field == 'timestamp'">
                   <span>{{rowData[col.field].toDate() | date : 'mediumDate'}}</span>
                 </ng-container>
-
-                <ng-container *ngIf="col.field == 'notification'">
-                  <button class="btn btn-primary" (click)="sendNotification(rowData['id'])">
-                    <i class="fa fa-paper-plane"></i>
-                  </button>
-                </ng-container>
-                <ng-container *ngIf="col.field == 'assignedPmsId'">
-                  <select [(ngModel)]="rowData['assignedPmsId']" (change)="assignPMS($event,rowData['id'])">
-                    <option value="null">None</option>
-                    <option *ngFor="let item of allPms" [value]="item.id">{{item.name}}</option>
-                  </select>
-                </ng-container>
-                <ng-container *ngIf="col.field == 'info'">
-                  <button class="btn btn-primary" (click)="viewInfo(rowData)">
-                    <i class="fa fa-info"></i>
-                  </button>
+                <ng-container *ngIf="col.field == 'action'">
+                  <button class="btn btn-warning" (click)="viewLeads(rowData['connector_code'])"><i
+                    class="fa fa-info"></i></button>
                 </ng-container>
                 <ng-container *ngIf="col.field == 'comment'">
+
                   <div class="d-flex align-items-center">
-                    <textarea #inp [(ngModel)]="rowData['comment']"  id="" cols="20" rows="3"></textarea>
-                    <button class="btn btn-success mx-1" (click)="saveComment(rowData['id'],inp.value)"><i
+
+                    <textarea #inp [(ngModel)]="rowData['comment']"  id="" cols="15" rows="3"></textarea>
+
+                    <button class="btn btn-primary mx-2" (click)="saveComment(rowData['id'],inp.value)"><i
                     class="fa fa-save"></i></button>
                   </div>
+
                 </ng-container>
+
               </td>
             </tr>
           </ng-template>
@@ -118,28 +81,34 @@
 </main>
 
 
-<p-dialog *ngIf="viewData"  header="Info" [(visible)]="displayBasic" [breakpoints]="{'960px': '50vw', '640px': '90vw'}" [style]="{width: '50vw'}">
+
+
+<p-dialog *ngIf="viewData"  header="Header" [(visible)]="displayBasic" [breakpoints]="{'960px': '50vw', '640px': '90vw'}" [style]="{width: '50vw'}">
 
   <ng-container  *ngFor="let itm of informations;let i = index" >
-    <ng-container *ngIf="itm?.field != 'assignedPmsId' && itm?.field != 'address_details' && itm?.field != 'timestamp' && itm?.field != 'comment'" >
+    <ng-container *ngIf="itm?.field != 'assignedPmsId' && itm?.field != 'comment' && itm?.field != 'address_details'" >
       <p > <b> {{itm?.header}} </b> : {{viewData[itm.field]}} </p>
       </ng-container >
+      <ng-container  *ngIf="itm?.field == 'comment'">
+        <textarea #inp [(ngModel)]="viewData['comment']"  id="" cols="30" rows="10"></textarea>
+        <button class="btn btn-primary" (click)="saveComment(viewData['id'],inp.value)"><i
+        class="fa fa-save"></i></button>
+      </ng-container >
+
+
       <ng-container *ngIf="itm.field == 'address_details'">
-        <p class="mb-0" *ngIf="viewData['address_details']"> <b> {{itm?.header}} </b> :    {{viewData['address_details']?.flat_street}}, {{viewData['address_details']?.address}}, {{viewData['address_details']?.city}} , {{viewData['address_details']?.pincode}},{{viewData['address_details']?.state}}
+        <p class="mb-0" *ngIf="viewData['address_details']?.flat_street">
+          {{viewData['address_details']?.flat_street}},</p>
+        <p class="mb-0" *ngIf="viewData['address_details']?.address">{{viewData['address_details']?.address}},
         </p>
-      </ng-container>
-      <ng-container *ngIf="itm.field == 'comment'">
-        <div class="d-flex align-items-center">
-          <textarea #inp [(ngModel)]="viewData['comment']"  id="" cols="50" rows="3"></textarea>
-          <button class="btn btn-primary mx-1" (click)="saveComment(viewData['id'],inp.value)"><i
-          class="fa fa-save"></i></button>
-        </div>
-      </ng-container>
-      <ng-container *ngIf="itm.field == 'timestamp'">
-        <p > <b> {{itm?.header}} </b> : {{viewData['timestamp'].toDate() | date:'medium'}} </p>
+        <p class="mb-0" *ngIf="viewData['address_details']?.city">{{viewData['address_details']?.city}},</p>
+        <p class="mb-0" *ngIf="viewData['address_details']?.pincode">{{viewData['address_details']?.pincode}}
+        </p>
+        <p class="mb-0" *ngIf="viewData['address_details']?.state">{{viewData['address_details']?.state}}</p>
       </ng-container>
 
   </ng-container>
+
 
 
 

@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonService } from 'src/app/services/common.service';
-import { PmsService } from 'src/app/services/pms.service';
-import { UserService } from 'src/app/services/user.service';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-users',
@@ -15,36 +14,33 @@ export class UsersComponent implements OnInit {
   allPms: any = [];
   viewData:any=null
   displayBasic=false
+
   cols = [
     { field: 'firstName', header: 'Name' },
-    { field: 'connector_code', header: 'Partner Code' },
+    { field: 'connector_code', header: 'Connector Code' },
     { field: 'mobile_no', header: 'Mobile' },
+    { field: 'gender', header: 'Gender' },
     { field: 'timestamp', header: 'Date' },
-    // { field: 'address_details', header: 'Address' },
-    { field: 'notification', header: 'Notification' },
-    { field: 'assignedPmsId', header: 'Assigned PMS' },
-    { field: 'info', header: 'View Info' },
     { field: 'comment', header: 'Comment' },
+    { field: 'action', header: 'Action' },
   ];
 
   informations = [
     { field: 'firstName', header: 'Name' },
-    { field: 'connector_code', header: 'Partner Code' },
+    { field: 'connector_code', header: 'Connector Code' },
     { field: 'mobile_no', header: 'Mobile' },
     { field: 'gender', header: 'Gender' },
     { field: 'timestamp', header: 'Date' },
     { field: 'address_details', header: 'Address' },
-    { field: 'comment', header: 'Comment' },
+    { field: 'comment', header: 'Comment' }
   ];
-
 
   loading: boolean = true;
   allStates: any = [];
   state: any = { name: 'All' };
   pmsId = new FormControl();
   constructor(
-    public user: UserService,
-    public pmsService: PmsService,
+    public user: UsersService,
     public router: Router,
     public common: CommonService
   ) {}
@@ -90,45 +86,29 @@ export class UsersComponent implements OnInit {
       { name: 'West Bengal' },
     ];
     this.getData();
-    this.getAllPmsData();
+
   }
 
-  sendNotification(id: any) {
-    this.router.navigateByUrl('/notifications/add/' + id);
-  }
 
   getData() {
-    this.user.getAll(this.state.name).subscribe((res) => {
+    this.user.getAllByPMSId().subscribe((res) => {
       this.allData = res;
       this.loading = false;
       console.log('all users', this.allData);
     });
   }
 
-  getAllPmsData() {
-    this.pmsService.getAll().subscribe((res) => {
-      this.allPms = res;
-      console.log('all Pms users', this.allData);
-    });
-  }
+
 
   onStateChange() {
     this.getData();
   }
 
-  assignPMS(event: any, userId: any) {
-    let obj = { assignedPmsId: event.target.value };
-    console.log(obj, userId);
-    this.user.update(userId, obj).then((res) => {
-      console.log(res);
-    });
+
+  viewLeads(code:any) {
+    this.router.navigateByUrl('/leads/' + code )
   }
 
-  viewInfo (data:any) {
-    this.viewData=data
-    this.displayBasic=true
-
-  }
 
   saveComment(userid:any,comments:any) {
     let obj= {comment:comments}
@@ -138,6 +118,11 @@ export class UsersComponent implements OnInit {
     })
   }
 
+  viewInfo (data:any) {
+    this.viewData=data
+    this.displayBasic=true
+
+  }
 
 
 }

@@ -1,53 +1,49 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
-import { CommonService } from 'src/app/services/common.service';
-import { PmsService } from 'src/app/services/pms.service';
-import { UserService } from 'src/app/services/user.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { LeadsService } from 'src/app/services/leads.service';
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss'],
+  selector: 'app-leads',
+  templateUrl: './leads.component.html',
+  styleUrls: ['./leads.component.scss'],
 })
-export class UsersComponent implements OnInit {
+export class LeadsComponent implements OnInit {
   allData: any = [];
-  allPms: any = [];
-  viewData:any=null
-  displayBasic=false
   cols = [
-    { field: 'firstName', header: 'Name' },
     { field: 'connector_code', header: 'Partner Code' },
+    { field: 'connectorDetails', header: 'Partner Name' },
+    { field: 'prefix', header: 'Name' },
     { field: 'mobile_no', header: 'Mobile' },
+    { field: 'amount', header: 'Amount' },
+    { field: 'loan_required', header: 'Loan Required' },
+    { field: 'description', header: 'Description' },
     { field: 'timestamp', header: 'Date' },
-    // { field: 'address_details', header: 'Address' },
-    { field: 'notification', header: 'Notification' },
-    { field: 'assignedPmsId', header: 'Assigned PMS' },
-    { field: 'info', header: 'View Info' },
+    { field: 'status', header: 'Status' },
     { field: 'comment', header: 'Comment' },
+    { field: 'info', header: 'Info' },
   ];
 
   informations = [
-    { field: 'firstName', header: 'Name' },
     { field: 'connector_code', header: 'Partner Code' },
+    { field: 'connectorDetails', header: 'Partner Name' },
+    { field: 'prefix', header: 'Name' },
+    { field: 'email', header: 'Email' },
     { field: 'mobile_no', header: 'Mobile' },
-    { field: 'gender', header: 'Gender' },
-    { field: 'timestamp', header: 'Date' },
+    { field: 'amount', header: 'Amount' },
+    { field: 'loan_required', header: 'Loan Required' },
+    { field: 'description', header: 'Description' },
     { field: 'address_details', header: 'Address' },
-    { field: 'comment', header: 'Comment' },
+    { field: 'comment', header: 'Comment' }
   ];
-
 
   loading: boolean = true;
   allStates: any = [];
   state: any = { name: 'All' };
-  pmsId = new FormControl();
-  constructor(
-    public user: UserService,
-    public pmsService: PmsService,
-    public router: Router,
-    public common: CommonService
-  ) {}
+  displayBasic:any=false
+  viewData:any=null
+  connector_code:any
+
+  constructor(public service: LeadsService, public router: Router,public route:ActivatedRoute) {}
 
   ngOnInit(): void {
     this.allStates = [
@@ -89,55 +85,45 @@ export class UsersComponent implements OnInit {
       { name: 'Uttarakhand' },
       { name: 'West Bengal' },
     ];
-    this.getData();
-    this.getAllPmsData();
-  }
-
-  sendNotification(id: any) {
-    this.router.navigateByUrl('/notifications/add/' + id);
+    this.connector_code = this.route.snapshot.params['user_code']
+    if(this.connector_code) {
+      this.getData();
+    }
   }
 
   getData() {
-    this.user.getAll(this.state.name).subscribe((res) => {
+    this.service.getAllByUserCode(this.connector_code).subscribe((res) => {
       this.allData = res;
       this.loading = false;
-      console.log('all users', this.allData);
+      console.log('all leads', this.allData);
     });
   }
 
-  getAllPmsData() {
-    this.pmsService.getAll().subscribe((res) => {
-      this.allPms = res;
-      console.log('all Pms users', this.allData);
-    });
+  onStatusChange(id: any, event: any) {
+    console.log('status', event.target.value);
+    let data = { status: event.target.value };
+    this.service.update(id, data).then((res) => {});
   }
+
 
   onStateChange() {
     this.getData();
   }
 
-  assignPMS(event: any, userId: any) {
-    let obj = { assignedPmsId: event.target.value };
-    console.log(obj, userId);
-    this.user.update(userId, obj).then((res) => {
-      console.log(res);
-    });
+  saveComment(userid:any,comments:any) {
+    let obj= {comment:comments}
+    console.log(obj)
+    this.service.update(userid,obj).then(res=>{
+      console.log(res)
+    })
   }
+
 
   viewInfo (data:any) {
     this.viewData=data
     this.displayBasic=true
 
   }
-
-  saveComment(userid:any,comments:any) {
-    let obj= {comment:comments}
-    console.log(obj)
-    this.user.update(userid,obj).then(res=>{
-      console.log(res)
-    })
-  }
-
 
 
 }

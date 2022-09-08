@@ -16,20 +16,13 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { ComponentsComponent } from './components/components.component';
-import { NotificationsComponent } from './components/notifications/notifications.component';
-import { AllNotificationsComponent } from './components/notifications/all-notifications/all-notifications.component';
-import { SingleNotificationComponent } from './components/notifications/single-notification/single-notification.component';
 import { UsersComponent } from './components/users/users.component';
 import { LeadsComponent } from './components/leads/leads.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TableModule } from 'primeng/table';
 import { DropdownModule } from 'primeng/dropdown';
-import { PmsComponent } from './components/pms/pms.component';
-import { AllPmsComponent } from './components/pms/all-pms/all-pms.component';
-import { SinglePmsComponent } from './components/pms/single-pms/single-pms.component';
 import {DialogModule} from 'primeng/dialog';
 import {ButtonModule} from 'primeng/button';
-
 
 @NgModule({
   declarations: [
@@ -38,14 +31,8 @@ import {ButtonModule} from 'primeng/button';
     AuthComponent,
     SigninComponent,
     ComponentsComponent,
-    NotificationsComponent,
-    AllNotificationsComponent,
-    SingleNotificationComponent,
     UsersComponent,
-    LeadsComponent,
-    PmsComponent,
-    AllPmsComponent,
-    SinglePmsComponent
+    LeadsComponent
   ],
   imports: [
     BrowserModule,
@@ -66,6 +53,6 @@ import {ButtonModule} from 'primeng/button';
     ButtonModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

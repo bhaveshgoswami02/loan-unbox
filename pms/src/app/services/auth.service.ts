@@ -12,25 +12,6 @@ import { CommonService } from './common.service';
 export class AuthService {
 
   constructor(public afAuth:AngularFireAuth,public db:AngularFirestore,public router:Router,public common:CommonService) {
-    // this.afAuth.authState.subscribe((res:any)=>{
-    //   if(res){
-    //     if(res.uid == 'VhscKjXOlGgS4PutnCC45FjRrN93') {
-    //       localStorage.setItem("uid",res.uid)
-    //       localStorage.setItem("email",res.email)
-    //       // this.router.navigateByUrl("/")
-    //     }
-    //     else{
-    //       localStorage.removeItem("uid")
-    //       localStorage.removeItem("email")
-    //       this.router.navigateByUrl("/auth")
-    //     }
-    //   }
-    //   else{
-    //     localStorage.removeItem("uid")
-    //     localStorage.removeItem("email")
-    //     this.router.navigateByUrl("/auth")
-    //   }
-    // })
    }
 
 
@@ -41,7 +22,7 @@ export class AuthService {
      return this.afAuth.signInWithEmailAndPassword(email,password).then((res:any)=>{
       localStorage.setItem("uid",res.user.uid)
       localStorage.setItem("email",res.user.email)
-      this.common.showToast("success","Successfull","You are LoggedIn successfully")
+      this.common.showToast("success","Successful","You are LoggedIn successfully")
       this.router.navigateByUrl("/")
       return res.user.uid
      }).catch(err=>{
@@ -64,7 +45,7 @@ export class AuthService {
    }
 
    isAuthenticated(){
-    if(localStorage.getItem("uid") == 'VhscKjXOlGgS4PutnCC45FjRrN93'){
+    if(localStorage.getItem("uid")){
       return true
     }
     else{
@@ -90,8 +71,6 @@ export class AuthService {
    getProfile(){
      return this.db.collection("users").doc(this.getUid()?.toString()).valueChanges()
    }
-
-   
    updateProfile(profileInfo:{firstName:string,lastName:string,mobile:string,gender:string}){
      return this.db.collection("users").doc(this.getUid()?.toString()).set(profileInfo).then(res=>{
        this.common.showToast("success","Update Successful","Profile Details Updated Successfully")

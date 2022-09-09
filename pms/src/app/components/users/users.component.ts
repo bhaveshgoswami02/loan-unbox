@@ -22,6 +22,7 @@ export class UsersComponent implements OnInit {
     { field: 'gender', header: 'Gender' },
     { field: 'timestamp', header: 'Date' },
     { field: 'comment', header: 'Comment' },
+    { field: 'notifications', header: 'Send Notification' },
     { field: 'action', header: 'Action' },
   ];
 
@@ -122,6 +123,11 @@ export class UsersComponent implements OnInit {
     this.viewData=data
     this.displayBasic=true
 
+  }
+
+
+  sendNotification(id: any) {
+    this.router.navigateByUrl('/notifications/add/' + id);
   }
 
 

@@ -21,8 +21,10 @@ import { LeadsComponent } from './components/leads/leads.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TableModule } from 'primeng/table';
 import { DropdownModule } from 'primeng/dropdown';
-import {DialogModule} from 'primeng/dialog';
-import {ButtonModule} from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
+import { NotificationsComponent } from './components/notifications/notifications.component';
+import { SingleNotificationComponent } from './components/notifications/single-notification/single-notification.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import {ButtonModule} from 'primeng/button';
     SigninComponent,
     ComponentsComponent,
     UsersComponent,
-    LeadsComponent
+    LeadsComponent,
+    NotificationsComponent,
+    SingleNotificationComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +54,7 @@ import {ButtonModule} from 'primeng/button';
     TableModule,
     DropdownModule,
     DialogModule,
-    ButtonModule
+    ButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

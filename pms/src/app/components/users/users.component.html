@@ -53,6 +53,11 @@
                   <button class="btn btn-warning" (click)="viewLeads(rowData['connector_code'])"><i
                     class="fa fa-info"></i></button>
                 </ng-container>
+                <ng-container *ngIf="col.field == 'notifications'">
+                  <button class="btn btn-primary" (click)="sendNotification(rowData['id'])">
+                    <i class="fa fa-paper-plane"></i>
+                  </button>
+                </ng-container>
                 <ng-container *ngIf="col.field == 'comment'">
 
                   <div class="d-flex align-items-center">

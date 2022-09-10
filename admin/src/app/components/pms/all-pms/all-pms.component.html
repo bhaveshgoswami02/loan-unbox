@@ -1,57 +1,56 @@
 <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 bg-color" style="background-color: #F7F7F9;min-height: 100vh;">
-    <div
-        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h4>All Pms</h4>
-        <button class="btn btn-primary" (click)="add()">Create PMS</button>
-    </div>
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h4>All Pms</h4>
+    <button class="btn btn-primary" (click)="add()">Create PMS</button>
+  </div>
 
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3">
-        <nav aria-label="breadcrumb" class="w-100">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item active" aria-current="page">All Pms</li>
-            </ol>
-        </nav>
-    </div>
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3">
+    <nav aria-label="breadcrumb" class="w-100">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">All Pms</li>
+      </ol>
+    </nav>
+  </div>
 
-    <div
-        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center rounded mb-3 border-bottom bg-white p-3">
-        <ng-container>
-            <div class="table-responsive">
-                <table class="table">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Password</th>
-                            <th scope="col">Created On </th>
-                            <th scope="col">Block/Unblock</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let data of allData;let i = index">
-                            <td>{{i+1}}</td>
-                            <td>{{data?.name}}</td>
-                            <td>{{data?.email}}</td>
-                            <td>{{data?.password}}</td>
-                            <td>{{data?.createdAt.toDate() | date : 'mediumDate'}}</td>
-                            <td>
+  <div
+    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center rounded mb-3 border-bottom bg-white p-3">
+    <ng-container>
+      <div class="table-responsive">
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Password</th>
+              <th scope="col">Created On </th>
+              <th scope="col">Block/Unblock</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of allData;let i = index">
+              <td>{{i+1}}</td>
+              <td>{{data?.name}}</td>
+              <td>{{data?.email}}</td>
+              <td>{{data?.password}}</td>
+              <td>{{data?.createdAt.toDate() | date : 'mediumDate'}}</td>
+              <td>
 
-                              <button *ngIf="data?.isBlocked" class="btn btn-primary" (click)="unblockPMS(data?.id)">
-                             Unblock
-                            </button>
+                <button *ngIf="data?.isBlocked" class="btn btn-primary" (click)="unblockPMS(data?.id)">
+                  Unblock
+                </button>
 
-                            <button *ngIf="!data?.isBlocked" class="btn btn-danger" (click)="blockPMS(data?.id)">
-                              Block
-                            </button>
+                <button *ngIf="!data?.isBlocked" class="btn btn-danger" (click)="blockPMS(data?.id)">
+                  Block
+                </button>
 
-                          </td>
+              </td>
 
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </ng-container>
-    </div>
-    <br><br>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </ng-container>
+  </div>
+  <br><br>
 </main>

@@ -114,20 +114,22 @@
   [style]="{width: '50vw'}">
 
   <ng-container *ngFor="let itm of informations;let i = index">
-    <ng-container *ngIf="itm?.field != 'status' && itm?.field != 'address_details'  && itm?.field != 'connectorDetails'  && itm?.field != 'prefix'  && itm?.field != 'comment'">
+    <ng-container
+      *ngIf="itm?.field != 'status' && itm?.field != 'address_details'  && itm?.field != 'connectorDetails'  && itm?.field != 'prefix'  && itm?.field != 'comment'">
       <p> <b> {{itm?.header}} </b> : {{viewData[itm.field]}} </p>
     </ng-container>
 
     <ng-container *ngIf="itm.field == 'connectorDetails'">
-      <p> <b> {{itm?.header}} </b>  <span *ngIf="viewData[itm.field]?.firstName">{{viewData[itm.field]?.firstName}}</span>
-      &nbsp;<span *ngIf="viewData[itm.field]?.middleName">{{viewData[itm.field]?.middleName}}</span>&nbsp;
-      <span *ngIf="viewData[itm.field]?.lastName">{{viewData[itm.field]?.lastName}}</span> </p>
+      <p> <b> {{itm?.header}} </b> <span
+          *ngIf="viewData[itm.field]?.firstName">{{viewData[itm.field]?.firstName}}</span>
+        &nbsp;<span *ngIf="viewData[itm.field]?.middleName">{{viewData[itm.field]?.middleName}}</span>&nbsp;
+        <span *ngIf="viewData[itm.field]?.lastName">{{viewData[itm.field]?.lastName}}</span> </p>
     </ng-container>
 
     <ng-container *ngIf="itm.field == 'prefix'">
-      <p> <b> {{itm?.header}} : </b>   <span *ngIf="viewData['firstName']">{{viewData['firstName']}}</span>
-      &nbsp;<span *ngIf="viewData['middleName']">{{viewData['middleName']}}</span>&nbsp;
-      <span *ngIf="viewData['lastName']">{{viewData['lastName']}}</span> </p>
+      <p> <b> {{itm?.header}} : </b> <span *ngIf="viewData['firstName']">{{viewData['firstName']}}</span>
+        &nbsp;<span *ngIf="viewData['middleName']">{{viewData['middleName']}}</span>&nbsp;
+        <span *ngIf="viewData['lastName']">{{viewData['lastName']}}</span> </p>
     </ng-container>
 
 

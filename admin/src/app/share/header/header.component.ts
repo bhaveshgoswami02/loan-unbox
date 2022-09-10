@@ -7,7 +7,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
+  isOpen=true
   constructor(public auth:AuthService) { }
 
   ngOnInit(): void {
@@ -15,6 +15,11 @@ export class HeaderComponent implements OnInit {
 
   logout(){
     this.auth.logOut()
+  }
+
+
+  toggleSideBar() {
+    this.isOpen=!this.isOpen
   }
 
 }

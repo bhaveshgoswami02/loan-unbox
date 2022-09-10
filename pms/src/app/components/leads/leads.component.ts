@@ -32,8 +32,7 @@ export class LeadsComponent implements OnInit {
     { field: 'amount', header: 'Amount' },
     { field: 'loan_required', header: 'Loan Required' },
     { field: 'description', header: 'Description' },
-    { field: 'address_details', header: 'Address' },
-    { field: 'comment', header: 'Comment' }
+    { field: 'address_details', header: 'Address' }
   ];
 
   loading: boolean = true;
@@ -91,19 +90,31 @@ export class LeadsComponent implements OnInit {
     }
   }
 
-  getData() {
-    this.service.getAllByUserCode(this.connector_code).subscribe((res) => {
-      this.allData = res;
-      this.loading = false;
-      console.log('all leads', this.allData);
-    });
-  }
+
 
   onStatusChange(id: any, event: any) {
-    console.log('status', event.target.value);
     let data = { status: event.target.value };
     this.service.update(id, data).then((res) => {});
   }
+
+  getData() {
+    if(this.state.name=='All') {
+      this.service.getAllByUserCode(this.connector_code).subscribe((res) => {
+        this.allData = res;
+        this.loading = false;
+        console.log('all leads', this.allData);
+      });
+    }
+    else {
+      this.service.getAllByUserCodeandState(this.state.name,this.connector_code).subscribe((res) => {
+        this.allData = res;
+        this.loading = false;
+        console.log('all leads', this.allData);
+      });
+    }
+
+  }
+
 
 
   onStateChange() {
@@ -112,7 +123,6 @@ export class LeadsComponent implements OnInit {
 
   saveComment(userid:any,comments:any) {
     let obj= {comment:comments}
-    console.log(obj)
     this.service.update(userid,obj).then(res=>{
       console.log(res)
     })
@@ -122,7 +132,6 @@ export class LeadsComponent implements OnInit {
   viewInfo (data:any) {
     this.viewData=data
     this.displayBasic=true
-
   }
 
 

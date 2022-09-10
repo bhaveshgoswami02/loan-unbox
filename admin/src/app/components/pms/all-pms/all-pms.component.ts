@@ -33,4 +33,24 @@ export class AllPmsComponent implements OnInit {
     this.router.navigateByUrl("/" + this.dataService.collection + "/edit/" + id)
   }
 
+
+
+  blockPMS(userid:any) {
+    let obj= {isBlocked:true}
+    console.log(obj)
+    this.dataService.update(userid,obj).then(res=>{
+      console.log(res)
+    })
+  }
+
+  unblockPMS(userid:any) {
+    let obj= {isBlocked:false}
+    console.log(obj)
+    this.dataService.update(userid,obj).then(res=>{
+      console.log(res)
+    })
+  }
+
+
+
 }

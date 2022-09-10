@@ -17,7 +17,7 @@ export class UsersComponent implements OnInit {
 
   cols = [
     { field: 'firstName', header: 'Name' },
-    { field: 'connector_code', header: 'Connector Code' },
+    { field: 'connector_code', header: 'Partner Code' },
     { field: 'mobile_no', header: 'Mobile' },
     { field: 'gender', header: 'Gender' },
     { field: 'timestamp', header: 'Date' },
@@ -28,12 +28,11 @@ export class UsersComponent implements OnInit {
 
   informations = [
     { field: 'firstName', header: 'Name' },
-    { field: 'connector_code', header: 'Connector Code' },
+    { field: 'connector_code', header: 'Partner Code' },
     { field: 'mobile_no', header: 'Mobile' },
     { field: 'gender', header: 'Gender' },
     { field: 'timestamp', header: 'Date' },
-    { field: 'address_details', header: 'Address' },
-    { field: 'comment', header: 'Comment' }
+    { field: 'address_details', header: 'Address' }
   ];
 
   loading: boolean = true;
@@ -92,11 +91,21 @@ export class UsersComponent implements OnInit {
 
 
   getData() {
-    this.user.getAllByPMSId().subscribe((res) => {
-      this.allData = res;
-      this.loading = false;
-      console.log('all users', this.allData);
-    });
+    if(this.state.name=='All') {
+      this.user.getAllByPMSId().subscribe((res) => {
+        this.allData = res;
+        this.loading = false;
+        console.log('all users', this.allData);
+      });
+    }
+    else {
+      this.user.getAllByPMSIdandState(this.state.name).subscribe((res) => {
+        this.allData = res;
+        this.loading = false;
+        console.log('all users', this.allData);
+      });
+    }
+
   }
 
 

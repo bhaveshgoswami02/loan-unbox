@@ -6,36 +6,6 @@
 
   <div
     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center rounded mb-3 border-bottom bg-white p-3">
-    <!-- <ng-container>
-      <div class="table-responsive">
-        <table class="table">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Name</th>
-              <th scope="col">Partner Code</th>
-              <th scope="col">Mobile</th>
-              <th scope="col">Gender</th>
-              <th scope="col">Date</th>
-              <th scope="col">Notification</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let data of allData;let i = index">
-              <td>{{i+1}}</td>
-              <td>{{data?.firstName}} {{data?.middleName}} {{data?.lastName}}</td>
-              <td>{{data?.connector_code}}</td>
-              <td>{{data?.mobile_no}}</td>
-              <td>{{data?.gender}}</td>
-              <td>{{data?.timestamp.toDate() | date : 'mediumDate'}}</td>
-              <td><button class="btn btn-primary" (click)="sendNotification(data.id)"><i
-                    class="fa fa-paper-plane"></i></button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </ng-container> -->
     <div class="row w-100">
       <div class="col-md-12">
         <p-table #dt [resizableColumns]="true" styleClass="p-datatable-responsive-demo p-datatable-gridlines"
@@ -47,7 +17,7 @@
             <div class="table-header">
               <div class="row">
                 <div class="col-md-8 col-lg-8 col-12 my-2">
-                  <h5>List of Categories</h5>
+                  <h5>List of Users</h5>
                 </div>
                 <div class="col-md-4 col-lg-4 col-12 my-2" style="text-align: right;">
                   <div class="p-inputgroup">
@@ -102,6 +72,17 @@
                     class="fa fa-save"></i></button>
                   </div>
                 </ng-container>
+
+                <ng-container *ngIf="col.field == 'block'">
+                  <button *ngIf="rowData['isBlocked']" class="btn btn-primary" (click)="unblockPMS(rowData['id'])">
+                    Unblock
+                   </button>
+
+                   <button *ngIf="!rowData['isBlocked']" class="btn btn-danger" (click)="blockPMS(rowData['id'])">
+                     Block
+                   </button>
+                </ng-container>
+
               </td>
             </tr>
           </ng-template>

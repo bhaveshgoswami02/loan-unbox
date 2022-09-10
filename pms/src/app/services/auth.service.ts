@@ -4,7 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 // import { CommonService } from '../common.service';
 import { CommonService } from './common.service';
-
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +15,17 @@ export class AuthService {
    }
 
 
-   signIn(email:any,password:any){
+  async signIn(email:any,password:any){
      this.common.showLoader()
      console.log(email,password)
+     const data:any = await this.getUserByEmail(email)
+     console.log(data)
+
+     if(data[0]?.isBlocked) {
+      this.common.showToast("error","Error","You are Blocked By an Admin")
+      this.common.stopLoader()
+      return
+     }
 
      return this.afAuth.signInWithEmailAndPassword(email,password).then((res:any)=>{
       localStorage.setItem("uid",res.user.uid)
@@ -80,6 +88,18 @@ export class AuthService {
       return err
      })
    }
+
+
+
+   getUserByEmail(emailid:any) {
+    return this.db.collection('pms', ref => ref.where('email','==',emailid)).get().pipe(
+      map(actions => actions.docs.map(a => {
+        const data = a.data() as any;
+        const id = a.id;
+        return { id, ...data };
+      }))
+    ).toPromise()
+  }
 
 
 }

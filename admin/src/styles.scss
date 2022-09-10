@@ -12,3 +12,18 @@
     outline-color: #a6d5fa;
     border: 1px solid #495057;
 }
+
+@media screen and (max-width: 768px) {
+  .p-datatable table
+  {
+   width: 100%;
+  }
+}
+
+
+
+
+ select {
+  margin: 1px;
+  // width: 100%;
+ }

@@ -20,11 +20,11 @@ export class UsersComponent implements OnInit {
     { field: 'connector_code', header: 'Partner Code' },
     { field: 'mobile_no', header: 'Mobile' },
     { field: 'timestamp', header: 'Date' },
-    // { field: 'address_details', header: 'Address' },
     { field: 'notification', header: 'Notification' },
-    { field: 'assignedPmsId', header: 'Assigned PMS' },
     { field: 'info', header: 'View Info' },
     { field: 'comment', header: 'Comment' },
+    { field: 'assignedPmsId', header: 'Assigned PMS' },
+    { field: 'block', header: 'Block/Unblock' },
   ];
 
   informations = [
@@ -33,8 +33,7 @@ export class UsersComponent implements OnInit {
     { field: 'mobile_no', header: 'Mobile' },
     { field: 'gender', header: 'Gender' },
     { field: 'timestamp', header: 'Date' },
-    { field: 'address_details', header: 'Address' },
-    { field: 'comment', header: 'Comment' },
+    { field: 'address_details', header: 'Address' }
   ];
 
 
@@ -138,6 +137,21 @@ export class UsersComponent implements OnInit {
     })
   }
 
+  blockPMS(userid:any) {
+    let obj= {isBlocked:true}
+    console.log(obj)
+    this.user.update(userid,obj).then(res=>{
+      console.log(res)
+    })
+  }
+
+  unblockPMS(userid:any) {
+    let obj= {isBlocked:false}
+    console.log(obj)
+    this.user.update(userid,obj).then(res=>{
+      console.log(res)
+    })
+  }
 
 
 }

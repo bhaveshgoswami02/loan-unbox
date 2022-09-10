@@ -18,7 +18,7 @@
             <div class="table-header">
               <div class="row">
                 <div class="col-md-8 col-lg-8 col-12 my-2">
-                  <h5>List of Categories</h5>
+                  <h5>List of Users</h5>
                 </div>
                 <div class="col-md-4 col-lg-4 col-12 my-2" style="text-align: right;">
                   <div class="p-inputgroup">
@@ -50,8 +50,7 @@
                   <span>{{rowData[col.field].toDate() | date : 'mediumDate'}}</span>
                 </ng-container>
                 <ng-container *ngIf="col.field == 'action'">
-                  <button class="btn btn-warning" (click)="viewLeads(rowData['connector_code'])"><i
-                    class="fa fa-info"></i></button>
+                  <button class="btn btn-warning" (click)="viewLeads(rowData['connector_code'])">View Leads</button>
                 </ng-container>
                 <ng-container *ngIf="col.field == 'notifications'">
                   <button class="btn btn-primary" (click)="sendNotification(rowData['id'])">
@@ -69,6 +68,7 @@
                   </div>
 
                 </ng-container>
+
 
               </td>
             </tr>
@@ -101,16 +101,10 @@
       </ng-container >
 
 
-      <ng-container *ngIf="itm.field == 'address_details'">
-        <p class="mb-0" *ngIf="viewData['address_details']?.flat_street">
-          {{viewData['address_details']?.flat_street}},</p>
-        <p class="mb-0" *ngIf="viewData['address_details']?.address">{{viewData['address_details']?.address}},
-        </p>
-        <p class="mb-0" *ngIf="viewData['address_details']?.city">{{viewData['address_details']?.city}},</p>
-        <p class="mb-0" *ngIf="viewData['address_details']?.pincode">{{viewData['address_details']?.pincode}}
-        </p>
-        <p class="mb-0" *ngIf="viewData['address_details']?.state">{{viewData['address_details']?.state}}</p>
-      </ng-container>
+      <ng-container *ngIf="itm?.field == 'address_details'">
+        <p class="mb-0" *ngIf="viewData['address_details']">
+         <b>Address : </b> {{viewData['address_details']?.flat_street}}, {{viewData['address_details']?.address}}, {{viewData['address_details']?.city}},{{viewData['address_details']?.pincode}},{{viewData['address_details']?.state}}  </p>
+       </ng-container>
 
   </ng-container>
 

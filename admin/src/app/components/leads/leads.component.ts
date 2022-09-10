@@ -32,8 +32,7 @@ export class LeadsComponent implements OnInit {
     { field: 'amount', header: 'Amount' },
     { field: 'loan_required', header: 'Loan Required' },
     { field: 'description', header: 'Description' },
-    { field: 'address_details', header: 'Address' },
-    { field: 'comment', header: 'Comment' }
+    { field: 'address_details', header: 'Address' }
   ];
 
 

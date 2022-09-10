@@ -26,6 +26,18 @@ export class UsersService {
     )
   }
 
+  getAllByPMSIdandState(state:any) {
+    let uid = localStorage.getItem('uid')
+    console.log(uid)
+    return this.db.collection(this.collection, ref => ref.where("address_details.state","==",state).orderBy("updated_at", "desc").where('assignedPmsId','==',uid)).get().pipe(
+      map(actions => actions.docs.map(a => {
+        const data = a.data() as any;
+        const id = a.id;
+        return { id, ...data };
+      }))
+    )
+  }
+
 
 
   update(id: string, data: any) {

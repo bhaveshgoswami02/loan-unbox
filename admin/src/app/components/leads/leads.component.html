@@ -132,19 +132,11 @@
 
 
     <ng-container *ngIf="itm.field == 'address_details'">
-      <p class="mb-0" *ngIf="viewData['address_details']?.flat_street">
+      <p class="mb-0" *ngIf="viewData['address_details']">
         <b>Address : </b>
         {{viewData['address_details']?.flat_street}},{{viewData['address_details']?.address}},{{viewData['address_details']?.city}},{{viewData['address_details']?.pincode}},{{viewData['address_details']?.state}}
       </p>
 
-    </ng-container>
-
-    <ng-container *ngIf="itm.field == 'comment'">
-      <div class="d-flex align-items-center">
-        <textarea #inp [(ngModel)]="viewData['comment']" id="" cols="50" rows="5"></textarea>
-        <button class="btn btn-success mx-2" (click)="saveComment(viewData['id'],inp.value)"><i
-            class="fa fa-save"></i></button>
-      </div>
     </ng-container>
 
   </ng-container>

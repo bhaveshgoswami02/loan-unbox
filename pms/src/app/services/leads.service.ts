@@ -29,6 +29,18 @@ export class LeadsService {
   }
 
 
+
+  getAllByUserCodeandState(state:any,connectorCode:any) {
+    return this.db.collection(this.collection, ref => ref.orderBy("timestamp", "desc").where('connector_code','==',connectorCode).where("address_details.state","==",state)).get().pipe(
+      map(actions => actions.docs.map(a => {
+        const data = a.data() as any;
+        const id = a.id;
+        return { id, ...data };
+      }))
+    )
+  }
+
+
   update(id: string, data: any) {
     this.common.showLoader()
     data.updatedAt = firebase.firestore.Timestamp.now()

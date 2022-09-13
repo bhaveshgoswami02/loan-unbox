@@ -35,16 +35,26 @@ export class PmsService {
 
 
 
-  getAll() {
-    return this.db.collection(this.collection, ref => ref.orderBy("createdAt", "desc")).get().pipe(
-      map(actions => actions.docs.map(a => {
-        const data = a.data() as any;
-        const id = a.id;
+  getAllUnblocked() {
+    return this.db.collection(this.collection, ref => ref.orderBy("createdAt", "desc").where('isBlocked','==',false)).snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as any;
+        const id = a.payload.doc.id;
         return { id, ...data };
       }))
     )
   }
 
+
+  getAll() {
+    return this.db.collection(this.collection, ref => ref.orderBy("createdAt", "desc")).snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as any;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      }))
+    )
+  }
 
 
   getSinglePms(id: string) {

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 // import { CommonService } from '../common.service';
 import { CommonService } from './common.service';
 
@@ -64,7 +65,7 @@ export class AuthService {
    }
 
    isAuthenticated(){
-    if(localStorage.getItem("uid") == 'VhscKjXOlGgS4PutnCC45FjRrN93'){
+    if(localStorage.getItem("uid") == environment.adminUid){
       return true
     }
     else{
@@ -91,7 +92,7 @@ export class AuthService {
      return this.db.collection("users").doc(this.getUid()?.toString()).valueChanges()
    }
 
-   
+
    updateProfile(profileInfo:{firstName:string,lastName:string,mobile:string,gender:string}){
      return this.db.collection("users").doc(this.getUid()?.toString()).set(profileInfo).then(res=>{
        this.common.showToast("success","Update Successful","Profile Details Updated Successfully")

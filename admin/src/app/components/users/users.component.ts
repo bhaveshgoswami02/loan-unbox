@@ -92,22 +92,26 @@ export class UsersComponent implements OnInit {
     this.getAllPmsData();
   }
 
+
+
+
   sendNotification(id: any) {
     this.router.navigateByUrl('/notifications/add/' + id);
   }
 
   getData() {
-    this.user.getAll(this.state.name).subscribe((res) => {
+   this.user.getAll(this.state.name).subscribe((res) => {
       this.allData = res;
       this.loading = false;
       console.log('all users', this.allData);
     });
+
   }
 
   getAllPmsData() {
-    this.pmsService.getAll().subscribe((res) => {
+    this.pmsService.getAllUnblocked().subscribe((res) => {
       this.allPms = res;
-      console.log('all Pms users', this.allData);
+      console.log('all Pms users', this.allPms);
     });
   }
 

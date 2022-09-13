@@ -24,7 +24,7 @@
               <th scope="col">Sub Title</th>
               <th scope="col">Message</th>
               <th scope="col">Date</th>
-              <th scope="col">Edit</th>
+              <!-- <th scope="col">Edit</th> -->
               <th scope="col">Delete</th>
             </tr>
           </thead>
@@ -35,8 +35,8 @@
               <td>{{data?.sub_title}}</td>
               <td>{{data?.message}}</td>
               <td>{{data?.timestamp.toDate() | date : 'mediumDate'}}</td>
-              <td><button class="btn btn-warning" (click)="edit(data.id)"><i class="fa fa-pencil"></i></button>
-              </td>
+              <!-- <td><button class="btn btn-warning" (click)="edit(data.id)"><i class="fa fa-pencil"></i></button>
+              </td> -->
               <td><button class="btn btn-danger" (click)="delete(data.id,data?.uid)"><i
                     class="fa fa-trash"></i></button>
               </td>

@@ -9,7 +9,7 @@
     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center rounded mb-3 border-bottom bg-white p-3 w-100"
     style="overflow-x: scroll;">
 
-    <div class="row w-100">
+    <div class="row ">
       <div class="col-md-12">
         <p-table #dt [resizableColumns]="true" styleClass="p-datatable-responsive-demo p-datatable-gridlines"
           [columns]="cols" [value]="allData" dataKey="id" [rowHover]="true" [rows]="10" [showCurrentPageReport]="true"
@@ -51,14 +51,14 @@
 
                 <ng-container *ngIf="col.field == 'connectorDetails'">
                   <span *ngIf="rowData[col.field]?.firstName">{{rowData[col.field]?.firstName}}</span>
-                  &nbsp;<span *ngIf="rowData[col.field]?.middleName">{{rowData[col.field]?.middleName}}</span>&nbsp;
-                  <span *ngIf="rowData[col.field]?.lastName">{{rowData[col.field]?.lastName}}</span>
+                  <!-- &nbsp;<span *ngIf="rowData[col.field]?.middleName">{{rowData[col.field]?.middleName}}</span>&nbsp;
+                  <span *ngIf="rowData[col.field]?.lastName">{{rowData[col.field]?.lastName}}</span> -->
                 </ng-container>
 
                 <ng-container *ngIf="col.field == 'prefix'">
                   <span *ngIf="rowData['firstName']">{{rowData['firstName']}}</span>
-                  &nbsp;<span *ngIf="rowData['middleName']">{{rowData['middleName']}}</span>&nbsp;
-                  <span *ngIf="rowData['lastName']">{{rowData['lastName']}}</span>
+                  <!-- &nbsp;<span *ngIf="rowData['middleName']">{{rowData['middleName']}}</span>&nbsp;
+                  <span *ngIf="rowData['lastName']">{{rowData['lastName']}}</span> -->
                 </ng-container>
 
 

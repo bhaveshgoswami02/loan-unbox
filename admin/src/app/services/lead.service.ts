@@ -32,24 +32,23 @@ export class LeadService {
 
   getAll(state:string) {
     if(state == 'All') {
-      return this.db.collection(this.collection, ref => ref.orderBy("timestamp", "desc").limit(10)).get().pipe(
-        map(actions => actions.docs.map(a => {
-          const data = a.data() as any;
-          const id = a.id;
+      return this.db.collection(this.collection, ref => ref.orderBy("timestamp", "desc")).snapshotChanges().pipe(
+        map(actions => actions.map(a => {
+          const data = a.payload.doc.data() as any;
+          const id = a.payload.doc.id;
           return { id, ...data };
         }))
       )
     }
     else
     {
-      return this.db.collection(this.collection, ref => ref.where("address_details.state","==",state).orderBy("timestamp", "desc").limit(10)).get().pipe(
-        map(actions => actions.docs.map(a => {
-          const data = a.data() as any;
-          const id = a.id;
+      return this.db.collection(this.collection, ref => ref.where("address_details.state","==",state).orderBy("timestamp", "desc")).snapshotChanges().pipe(
+        map(actions => actions.map(a => {
+          const data = a.payload.doc.data() as any;
+          const id = a.payload.doc.id;
           return { id, ...data };
         }))
       )
-
     }
   }
 
@@ -71,7 +70,6 @@ export class LeadService {
       this.common.showToast("error", "Error", err)
       return err;
     }).finally(() => {
-      this.router.navigateByUrl("/" + this.collection)
       this.common.showToast("success", "Successful", "Updated!")
       this.common.stopLoader()
     })

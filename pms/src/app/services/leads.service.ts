@@ -19,10 +19,10 @@ export class LeadsService {
 
 
   getAllByUserCode(connectorCode:any) {
-    return this.db.collection(this.collection, ref => ref.orderBy("timestamp", "desc").where('connector_code','==',connectorCode)).get().pipe(
-      map(actions => actions.docs.map(a => {
-        const data = a.data() as any;
-        const id = a.id;
+    return this.db.collection(this.collection, ref => ref.orderBy("timestamp", "desc").where('connector_code','==',connectorCode)).snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as any;
+        const id = a.payload.doc.id;
         return { id, ...data };
       }))
     )
@@ -31,10 +31,10 @@ export class LeadsService {
 
 
   getAllByUserCodeandState(state:any,connectorCode:any) {
-    return this.db.collection(this.collection, ref => ref.orderBy("timestamp", "desc").where('connector_code','==',connectorCode).where("address_details.state","==",state)).get().pipe(
-      map(actions => actions.docs.map(a => {
-        const data = a.data() as any;
-        const id = a.id;
+    return this.db.collection(this.collection, ref => ref.orderBy("timestamp", "desc").where('connector_code','==',connectorCode).where("address_details.state","==",state)).snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as any;
+        const id = a.payload.doc.id;
         return { id, ...data };
       }))
     )

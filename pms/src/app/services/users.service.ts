@@ -17,10 +17,10 @@ export class UsersService {
   getAllByPMSId() {
     let uid = localStorage.getItem('uid')
     console.log(uid)
-    return this.db.collection(this.collection, ref => ref.orderBy("updated_at", "desc").where('assignedPmsId','==',uid)).get().pipe(
-      map(actions => actions.docs.map(a => {
-        const data = a.data() as any;
-        const id = a.id;
+    return this.db.collection(this.collection, ref => ref.orderBy("updated_at", "desc").where('assignedPmsId','==',uid)).snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as any;
+        const id = a.payload.doc.id;
         return { id, ...data };
       }))
     )
@@ -29,10 +29,10 @@ export class UsersService {
   getAllByPMSIdandState(state:any) {
     let uid = localStorage.getItem('uid')
     console.log(uid)
-    return this.db.collection(this.collection, ref => ref.where("address_details.state","==",state).orderBy("updated_at", "desc").where('assignedPmsId','==',uid)).get().pipe(
-      map(actions => actions.docs.map(a => {
-        const data = a.data() as any;
-        const id = a.id;
+    return this.db.collection(this.collection, ref => ref.where("address_details.state","==",state).orderBy("updated_at", "desc").where('assignedPmsId','==',uid)).snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as any;
+        const id = a.payload.doc.id;
         return { id, ...data };
       }))
     )
@@ -49,7 +49,7 @@ export class UsersService {
       this.common.showToast("error", "Error", err)
       return err;
     }).finally(() => {
-      this.router.navigateByUrl("/" + this.collection)
+      // this.router.navigateByUrl("/" + this.collection)
       this.common.showToast("success", "Successful", "Updated!")
       this.common.stopLoader()
     })

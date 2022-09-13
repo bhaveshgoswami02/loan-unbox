@@ -19,6 +19,7 @@ export class PmsService {
     this.common.showLoader()
     this.afAuth.createUserWithEmailAndPassword(data.email,data.password).then(res => {
       data.createdAt = firebase.firestore.Timestamp.now()
+      data.isBlocked=false
       return this.db.collection(this.collection).doc(res?.user?.uid).set(data).then(res => {
         this.router.navigateByUrl("/" + this.collection)
         this.common.showToast("success", "", "PMS added Successfully")

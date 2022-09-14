@@ -21,6 +21,10 @@
     "@angular/platform-browser": "~12.0.2",
     "@angular/platform-browser-dynamic": "~12.0.2",
     "@angular/router": "~12.0.2",
+    "@capacitor/android": "^4.2.0",
+    "@capacitor/angular": "^2.0.3",
+    "@capacitor/core": "latest",
+    "@capacitor/ios": "^4.2.0",
     "firebase": "^7.0 || ^8.0",
     "ngx-toastr": "^14.0.0",
     "ngx-ui-loader": "^11.0.0",
@@ -49,6 +53,7 @@
     "inquirer": "^6.2.2",
     "inquirer-autocomplete-prompt": "^1.0.1",
     "open": "^7.0.3",
-    "jsonc-parser": "^3.0.0"
+    "jsonc-parser": "^3.0.0",
+    "@capacitor/cli": "latest"
   }
 }

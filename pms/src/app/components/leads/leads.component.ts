@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LeadsService } from 'src/app/services/leads.service';
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
   selector: 'app-leads',
@@ -42,7 +43,7 @@ export class LeadsComponent implements OnInit {
   viewData:any=null
   connector_code:any
 
-  constructor(public service: LeadsService, public router: Router,public route:ActivatedRoute) {}
+  constructor(public service: LeadsService, public router: Router,public route:ActivatedRoute,public common:CommonService) {}
 
   ngOnInit(): void {
     this.allStates = [

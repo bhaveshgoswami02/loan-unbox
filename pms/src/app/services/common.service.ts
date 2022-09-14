@@ -57,4 +57,11 @@ export class CommonService {
     }), httpOptions).toPromise()
   }
 
+
+
+
+  back() {
+    window.history.back()
+  }
+
 }

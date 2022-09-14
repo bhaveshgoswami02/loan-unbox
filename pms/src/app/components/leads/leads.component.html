@@ -1,6 +1,6 @@
 <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 bg-color" style="background-color: #F7F7F9;min-height: 100vh;">
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h4>All Leads</h4>
+    <h4> <i class="pi pi-angle-left cursor-pointer" (click)="common.back()"></i> All Leads</h4>
     <p-dropdown [options]="allStates" optionLabel="name" [filter]="true"  filterBy="name" [(ngModel)]="state" (onChange)="onStateChange()" placeholder="Select a state" [showClear]="true"></p-dropdown>
   </div>
 

@@ -1,14 +1,14 @@
 {
   "targets": {
-    "loan-unbox-admin": {
+    "admin32-loanunbox": {
       "hosting": {
         "admin": [
-          "loan-unbox-admin"
+          "admin32-loanunbox"
         ]
       }
     }
   },
   "projects": {
-    "default": "loan-unbox-admin"
+    "default": "admin32-loanunbox"
   }
 }
